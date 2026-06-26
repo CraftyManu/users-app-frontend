@@ -32,7 +32,7 @@ const routeTree = rootRoute.addChildren([
     registerRoute,
 ])
 
-export const router = createRouter({ routeTree })
+export const router = createRouter({ routeTree })  //se importa en App.tsx
 
 declare module '@tanstack/react-router' {
     interface Register {
