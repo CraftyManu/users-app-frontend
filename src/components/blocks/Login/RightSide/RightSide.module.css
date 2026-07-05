@@ -1,4 +1,8 @@
 .rightBackground {
+
+    position: relative;
+    overflow: hidden;
+
     display: flex;
     min-height: 100vh;
 
@@ -10,7 +14,7 @@
     color: white;
     background:
         linear-gradient(#05050559, #050505a6),
-        url("../../../../assets/images/dna-background.png") ;
+        url("../../../../assets/images/dna-background.png");
     background-position: right;
     background-size: cover;
     background-repeat: no-repeat;
@@ -29,6 +33,7 @@
 
 /* Text container */
 .textContainer {
+    position: relative;
     z-index: 1;
     font-size: 18px;
     margin-bottom: 16px;
