@@ -1,34 +1,26 @@
 .rightBackground {
-
-    position: relative;
-    overflow: hidden;
+    flex: 1;
+    width: 100%;
+    height: 100%;
 
     display: flex;
-    min-height: 100vh;
-
-    /* Background image */
     justify-content: center;
     align-items: flex-end;
 
     padding: 2rem;
     color: white;
+
     background:
+        linear-gradient(to top,
+            rgba(0, 0, 0, 0.8),
+            rgba(0, 0, 0, 0.2),
+            transparent),
         linear-gradient(#05050559, #050505a6),
         url("../../../../assets/images/dna-background.png");
-    background-position: right;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
 
-/* Dark gradient at the bottom */
-.rightBackground::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top,
-            rgba(0, 0, 0, .8),
-            rgba(0, 0, 0, .2),
-            transparent);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* Text container */

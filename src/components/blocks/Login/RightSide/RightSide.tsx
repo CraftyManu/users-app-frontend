@@ -4,7 +4,7 @@ function LoginRightSide() {
     return (
         <div className={styles.rightBackground}>
             <div className={styles.textContainer}>
-                <p>Gestiona de forma segura la información de los usuarios</p>
+                <p>Gestiona de forma segura la información de los usuarios.</p>
             </div>
         </div>
     )
