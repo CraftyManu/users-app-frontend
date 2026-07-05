@@ -1,12 +1,36 @@
-.right {
+.rightBackground {
+    display: flex;
+    min-height: 100vh;
 
+    /* Background image */
+    justify-content: center;
+    align-items: flex-end;
+
+    padding: 2rem;
+    color: white;
+    background:
+        linear-gradient(#05050559, #050505a6),
+        url("../../../../assets/images/dna-background.png") ;
+    background-position: right;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
-.rightImage {
-width: 100%;
-height: auto;
+/* Dark gradient at the bottom */
+.rightBackground::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, .8),
+            rgba(0, 0, 0, .2),
+            transparent);
 }
 
-.footer {
-
+/* Text container */
+.textContainer {
+    z-index: 1;
+    font-size: 18px;
+    margin-bottom: 16px;
+    line-height: 1.2;
 }

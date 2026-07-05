@@ -17,6 +17,12 @@ function LoginForm() {
             <label className={styles.label} htmlFor="password">Contraseña</label>
             <input className={styles.input} id='password' type="password" placeholder='contraseña' />
 
+            <div className={`${styles.flex} ${styles.alignLeft} ${styles.invertOrder}`}>
+                <label htmlFor="recordarme">Recordarme</label>
+                <input type="checkbox" id='recordarme' />
+            </div>
+
+
             <Button variant='primary' type='submit'>Iniciar Sesión</Button>
 
             <Footer> ¿No tenés cuenta? <Link to='/register'>Registrate</Link></Footer>
