@@ -1,6 +1,6 @@
-import { Link } from '@tanstack/react-router'
+/* import { Link } from '@tanstack/react-router' */
 import styles from './Login.module.css'
-import Button from '@/components/ui/Button/Button' /* import Navigation from '@/components/blocks/Navigation/Navigation' */
+/* import Button from '@/components/ui/Button/Button'  */
 import LoginForm from '@/components/blocks/Login/Form/LoginForm'
 import RightSide from '@/components/blocks/Login/RightSide/RightSide'
 
@@ -8,7 +8,7 @@ function Login() {
     return (
         <main className={`${styles.container} ${styles.main}`}>
             <section className={styles.left}>
-                <div className={styles.form}>
+                {/* <div className={styles.form}>
                     <h1 className={styles.title}>Iniciar Sesión</h1>
                     <p className={styles.subtitle}>Ingresá tu email y contraseña para continuar</p>
                 
@@ -23,8 +23,8 @@ function Login() {
                     <p className={styles.footer}>
                         ¿No tenés cuenta? <Link to='/register'>Registrate</Link>
                     </p>
-                </div> 
-                {/* <LoginForm/> */}
+                </div>  */}
+                <LoginForm/> 
             </section>
 
             <section className={styles.right}>
