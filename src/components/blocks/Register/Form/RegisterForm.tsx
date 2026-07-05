@@ -20,7 +20,7 @@ function RegisterForm() {
             <label className={styles.label} htmlFor="password">Contraseña</label>
             <input className={styles.input} id='password' type="password" placeholder='contraseña' />
 
-            <Button variant='primary' type='submit'>Iniciar Sesión</Button>
+            <Button variant='primary' type='submit'>Registrarse</Button>
 
             <Footer>¿Ya tenés cuenta? <Link to='/login'>Iniciá Sesión</Link> </Footer>
         </div>
