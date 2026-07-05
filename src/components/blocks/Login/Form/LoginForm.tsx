@@ -1,14 +1,16 @@
 import { Link } from '@tanstack/react-router'
 import styles from './LoginForm.module.css'
-import Button from '@/components/ui/Button/Button' /* import Navigation from '@/components/blocks/Navigation/Navigation' */
+import Button from '@/components/ui/Button/Button'
 import Title from '@/components/ui/Title/Title'
 import Subtitle from '@/components/ui/Subtitle/Subtitle'
+import Footer from '@/components/ui/Footer/Footer'
 
 function LoginForm() {
     return (
         <div className={styles.form}>
             <Title>Iniciar Sesión</Title>
             <Subtitle>Ingresá tu email y contraseña para continuar</Subtitle>
+
             <label className={styles.label} htmlFor="email">Email</label>
             <input className={styles.input} id="email" type="email" placeholder='tu@email.com' />
 
@@ -17,9 +19,7 @@ function LoginForm() {
 
             <Button variant='primary' type='submit'>Iniciar Sesión</Button>
 
-            <p className={styles.footer}>
-                ¿No tenés cuenta? <Link to='/register'>Registrate</Link>
-            </p>
+            <Footer> ¿No tenés cuenta? <Link to='/register'>Registrate</Link></Footer>
         </div>
     )
 }

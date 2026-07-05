@@ -22,7 +22,7 @@
     flex-direction: column;
 }
 
-.title {
+/* .title {
     font-size: 28px;
     font-weight: 700;
     color: #ffffff;
@@ -33,7 +33,7 @@
     font-size: 14px;
     color: #888;
     margin: 0 0 32px;
-}
+} */
 
 .label {
     font-size: 13px;
@@ -58,7 +58,7 @@
 .input:focus {
     border-color: #666;
 }
-
+/* 
 .footer {
     margin-top: 24px;
     font-size: 14px;
@@ -73,7 +73,7 @@
 
 .footer a:hover {
     text-decoration: underline;
-}
+} */
 
 /* ============================================================
                     LADO DERECHO
