@@ -17,9 +17,11 @@ function LoginForm() {
             <label className={styles.label} htmlFor="password">Contraseña</label>
             <input className={styles.input} id='password' type="password" placeholder='contraseña' />
 
-            <div className={`${styles.flex} ${styles.alignLeft} ${styles.invertOrder}`}>
-                <label htmlFor="recordarme">Recordarme</label>
-                <input type="checkbox" id='recordarme' />
+            <div className={styles.checkboxContainer}>
+                <input type="checkbox" id="recordarme" />
+                <label className={styles.label} htmlFor="recordarme">
+                    Recordarme
+                </label>
             </div>
 
 

@@ -4,6 +4,9 @@ import { createRoot } from 'react-dom/client'
 // Styles
 import '@/styles/global.css'
 
+// Fonts 
+import '@/styles/fonts.css'
+
 // App
 import App from '@/App'
 

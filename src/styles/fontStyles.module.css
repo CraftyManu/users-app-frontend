@@ -1,0 +1,23 @@
+.grotesk {
+    font-family: "Space Grotesk", sans-serif;
+}
+
+.inter {
+    font-family: "Inter", sans-serif;
+}
+
+.yuyu {
+    font-family: "Yuyu", sans-serif;
+}
+
+.fw700 {
+    font-weight: 700;
+}
+
+.fw600 {
+    font-weight: var(--fw-semibold);
+}
+
+.fw400 {
+    font-weight: 400;
+}

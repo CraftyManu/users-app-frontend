@@ -1,0 +1,29 @@
+.logoWrapper {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+}
+
+.logoIcon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+    font-weight: 700;
+    font-size: 1.2rem;
+
+    box-shadow: 0 10px 25px rgba(79,140,255,.3);
+}
+
+.logoText {
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -.04em;
+}

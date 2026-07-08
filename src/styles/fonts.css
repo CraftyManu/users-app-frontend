@@ -1,0 +1,27 @@
+/* Space Grotesk */
+@font-face {
+    font-family: "Space Grotesk";
+    src: url("../assets/fonts/Space_Grotesk/SpaceGrotesk-VariableFont_wght.ttf") format("truetype");
+    font-weight: 300 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Inter */
+@font-face {
+    font-family: "Inter";
+    src: url("../assets/fonts/Inter/Inter-VariableFont_opsz\,wght.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Yuyu */
+@font-face {
+    font-family: "Yuyu";
+    src: url("../assets/fonts/Yuyu/Yuyu-Regular.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
