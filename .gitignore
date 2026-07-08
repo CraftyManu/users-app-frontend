@@ -4,3 +4,18 @@ dist-ssr
 *.local
 .DB_Store
 examples
+
+
+OFL.txt
+README.txt
+src/assets/fonts/Inter/Inter-Italic-VariableFont_opsz,wght.ttf
+# Ignore everything in the top folder
+
+# Allow the specific subfolder path
+!fonts/Inter/
+
+# Ignore everything inside that subfolder
+fonts/Inter/*
+
+# Allow the exact file
+!fonts/Inter/Inter-VariableFont_opsz,wght.ttf
