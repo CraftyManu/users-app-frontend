@@ -1,5 +1,4 @@
 .container {
-}.container {
     display: flex;
     height: 100vh;
 }
@@ -90,5 +89,17 @@
 @media (max-width: 768px) {
     .right {
         display: none;
+    }
+}
+
+@media (max-height: 450px) {
+    .container {
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .form {
+        padding: 24px;
+        margin: auto 0;
     }
 }
