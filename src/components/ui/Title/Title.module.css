@@ -1,6 +1,9 @@
 .title {
-    font-size: 28px;
+    /* font-size: 28px; */
+    font-size:  clamp(2.2rem,3vw,3rem);
     font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -.04em;
     color: #ffffff;
-    margin: 0 0 8px;
+    margin: 0 0 .5rem;
 }

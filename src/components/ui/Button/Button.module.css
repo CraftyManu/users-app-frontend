@@ -1,5 +1,7 @@
 .button {
-    padding: 0.5rem 1rem;
+    width: 100%;
+    padding: 13px;
+    /*     padding: 0.5rem 1rem; */
     margin-top: 4px;
     background-color: #fff;
     color: #000;
@@ -24,6 +26,12 @@
 .primary {
     background-color: var(--color-primary);
     color: white;
+
+    background:
+        linear-gradient(180deg,
+            var(--color-primary),
+            var(--color-primary-hover));
+    box-shadow: 0 12px 30px rgba(139, 124, 246, .35);
 }
 
 .secondary {

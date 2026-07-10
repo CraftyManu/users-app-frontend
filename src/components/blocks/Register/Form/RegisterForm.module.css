@@ -22,7 +22,7 @@
     flex-direction: column;
 }
 
-.title {
+/* .title {
     font-size: 28px;
     font-weight: 700;
     color: #ffffff;
@@ -34,7 +34,7 @@
     color: #888;
     margin: 0 0 32px;
 }
-
+ */
 .label {
     font-size: 13px;
     font-weight: 500;
@@ -45,7 +45,7 @@
 .input {
     width: 100%;
     padding: 12px 16px;
-    margin-bottom: 20px;
+    margin-bottom: 1.75rem;
     background-color: #1a1a1a;
     border: 1px solid #333;
     border-radius: 8px;
