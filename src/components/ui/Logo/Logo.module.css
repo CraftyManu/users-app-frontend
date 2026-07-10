@@ -5,9 +5,9 @@
 }
 
 .logoIcon {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+    border-radius: 25%;
     background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
 
     display: flex;

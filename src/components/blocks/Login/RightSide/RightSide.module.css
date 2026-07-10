@@ -17,6 +17,15 @@
         linear-gradient(#05050559, #050505a6),
         url("../../../../assets/images/dna-background.png");
 
+    /* background:
+        radial-gradient(circle at top left,
+            rgba(139, 124, 246, .35),
+            transparent 40%),
+        linear-gradient(180deg,
+            rgba(8, 8, 10, .35),
+            rgba(8, 8, 10, .9)),
+        url("../../../../assets/images/dna-background.png");
+ */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -57,4 +66,9 @@
 .maxWidth {
     /*  max-width: 12ch; */
     max-width: 20ch;
+}
+
+.emptySpace {
+    height: 30vh;
+    width: 100%;
 }

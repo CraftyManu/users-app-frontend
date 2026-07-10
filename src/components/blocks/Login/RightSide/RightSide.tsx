@@ -9,12 +9,14 @@ function LoginRightSide() {
             <Logo />
 
             <div>
+                <div className={styles.emptySpace}></div>
                 <div className={`${styles.textContainer} ${styles.toBottom} ${styles.toLeft} ${styles.maxWidth}`}>
-                    <p className={`${fontStyles.inter} ${fontStyles.fw600}`}>Tu App de Usuarios</p>
+                    <p className={`${fontStyles.inter} ${fontStyles.fw400}`}>Segura. Rápida. Escalable.</p>
                 </div>
 
                 <div className={`${styles.textContainer} ${styles.toBottom} ${styles.toLeft}`}>
-                    <p className={`${fontStyles.inter} ${fontStyles.fw400}`} >Gestiona de forma segura la información de tus usuarios.</p>
+                    <p className={`${fontStyles.inter} ${fontStyles.fw600}`} >Gestiona usuarios
+                        sin complicaciones.</p>
                 </div>
             </div>
 

@@ -8,13 +8,32 @@
     border-radius: 20px;
     background: #ffffff05;
     border: 1px solid #ffffff0d;
+
+    animation: fadeUp .7s ease;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
 }
 
 .label {
-    font-size: 13px;
+    /*     font-size: 13px; */
     font-weight: 500;
     color: #ccc;
-    margin-bottom: 6px;
+    /*     margin-bottom: 6px; */
+
+    margin-bottom: .55rem;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    font-size: .72rem;
 }
 
 .input {
