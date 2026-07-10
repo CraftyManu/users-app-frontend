@@ -8,10 +8,6 @@ function LoginRightSide() {
 
             <Logo />
 
-            {/* <div className={`${styles.textContainer} ${styles.toTop} ${styles.toRight}`}>
-                <p className={`${fontStyles.grotesk} ${fontStyles.fw700}`}>UsersApp</p>
-            </div> */}
-
             <div>
                 <div className={`${styles.textContainer} ${styles.toBottom} ${styles.toLeft} ${styles.maxWidth}`}>
                     <p className={`${fontStyles.inter} ${fontStyles.fw600}`}>Tu App de Usuarios</p>
