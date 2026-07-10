@@ -8,13 +8,15 @@
                     LADO IZQUIERDO
 ============================================================ */
 .left {
-    flex: 0 0 clamp(380px, 35vw, 520px);    /* never smaller than 380px, ideally 35% of the viewport, never larger than 520px.*/
+    flex: 0 0 clamp(380px, 35vw, 520px);
+    /* never smaller than 380px, ideally 35% of the viewport, never larger than 520px.*/
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     background-color: #0a0a0a;
     padding: 40px;
     min-width: 50vw;
+overflow: hidden;
 }
 
 /* ============================================================
@@ -35,5 +37,19 @@
 
     .left {
         min-width: 100%;
+    }
+}
+
+@media (max-height: 450px) {
+    .left {
+        justify-content: flex-start;
+        align-items: stretch;
+        padding: 20px;
+        overflow-y: auto;
+    }
+
+    .form {
+        padding: 24px;
+        margin: auto 0;
     }
 }
