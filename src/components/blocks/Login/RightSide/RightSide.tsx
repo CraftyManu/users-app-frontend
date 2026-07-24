@@ -2,11 +2,25 @@ import styles from './RightSide.module.css'
 import fontStyles from '@/styles/fontStyles.module.css'
 import Logo from '@/components/ui/Logo/Logo'
 
+import backgroundVideo from "@/assets/videos/dna-strand.mp4";
+
 function LoginRightSide() {
     return (
         <div className={styles.rightBackground}>
 
-            <Logo />
+            <video
+                className={styles.backgroundVideo}
+                autoPlay
+                muted
+                loop
+                playsInline
+            >
+                <source src={backgroundVideo} type="video/mp4" />
+            </video>
+
+            <div className={styles.content}>
+                <Logo />
+            </div>
 
             <>
                 <div className={styles.emptySpace}></div>
