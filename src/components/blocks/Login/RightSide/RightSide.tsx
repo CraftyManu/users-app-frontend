@@ -8,7 +8,7 @@ function LoginRightSide() {
 
             <Logo />
 
-            <div>
+            <>
                 <div className={styles.emptySpace}></div>
                 <div className={`${styles.textContainer} ${styles.toBottom} ${styles.toLeft} ${styles.maxWidth}`}>
                     <p className={`${fontStyles.inter} ${fontStyles.fw400}`}>Segura. Rápida. Escalable.</p>
@@ -18,7 +18,7 @@ function LoginRightSide() {
                     <p className={`${fontStyles.inter} ${fontStyles.fw600}`} >Gestiona usuarios
                         sin complicaciones.</p>
                 </div>
-            </div>
+            </>
 
         </div>
     )

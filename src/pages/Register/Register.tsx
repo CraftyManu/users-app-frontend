@@ -2,13 +2,13 @@
 import styles from './Register.module.css'
 /* import Button from '@/components/ui/Button/Button'  */
 import RightSide from '@/components/blocks/Login/RightSide/RightSide'
-import RegisterForm from '@/components/blocks/Register/Form/RegisterForm'
+import CreateForm from '@/components/blocks/Register/CreateForm/CreateForm'
 
 function Register() {
     return (
         <main className={`${styles.container} ${styles.main}`}>
             <section className={styles.left}>
-                <RegisterForm />
+                <CreateForm />
             </section>
 
             <section className={styles.right}>

@@ -1,15 +1,15 @@
 import { Link } from '@tanstack/react-router'
-import styles from './RegisterForm.module.css'
-import Button from '@/components/ui/Button/Button' /* import Navigation from '@/components/blocks/Navigation/Navigation' */
+import styles from './CreateForm.module.css'
+import Button from '@/components/ui/Button/Button' 
 import Title from '@/components/ui/Title/Title'
 import Subtitle from '@/components/ui/Subtitle/Subtitle'
 import Footer from '@/components/ui/Footer/Footer'
 
-function RegisterForm() {
+function CreateForm() {
     return (
         <div className={styles.form}>
-            <Title>Crear Cuenta</Title>
-            <Subtitle>Completá tus datos para registrarte</Subtitle>
+            <Title>Crear Usuario</Title>
+            <Subtitle>Completá los datos para crear un nuevo usuario</Subtitle>
 
             <label className={styles.label} htmlFor="nombre">Nombre</label>
             <input className={styles.input} id="nombre" type="text" placeholder='Nombre' />
@@ -27,6 +27,6 @@ function RegisterForm() {
     )
 }
 
-export default RegisterForm
+export default CreateForm
 
 

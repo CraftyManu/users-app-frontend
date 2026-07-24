@@ -7,20 +7,23 @@
                     LADO IZQUIERDO
           ============================================================ */
 .left {
-    flex: 1;
+    flex: 0 0 clamp(380px, 35vw, 520px);
+    /* never smaller than 380px, ideally 35% of the viewport, never larger than 520px.*/
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #0a0a0a;
     padding: 40px;
+    min-width: 50vw;
+    overflow: hidden;
 }
 
-.form {
+/* .form {
     width: 100%;
     max-width: 360px;
     display: flex;
     flex-direction: column;
-}
+} */
 
 /* .title {
     font-size: 28px;
@@ -35,7 +38,7 @@
     margin: 0 0 32px;
 } */
 
-.label {
+/* .label {
     font-size: 13px;
     font-weight: 500;
     color: #ccc;
@@ -57,9 +60,9 @@
 
 .input:focus {
     border-color: #666;
-}
+} */
 
-.footer {
+/* .footer {
     margin-top: 24px;
     font-size: 14px;
     color: #888;
@@ -69,7 +72,7 @@
 .footer a {
     color: #fff;
     text-decoration: none;
-}
+} */
 
 .footer a:hover {
     text-decoration: underline;
