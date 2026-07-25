@@ -4,6 +4,9 @@ dist-ssr
 *.local
 .DB_Store
 examples
+email.ts
+api.ts
+
 
 
 OFL.txt
