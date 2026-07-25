@@ -1,7 +1,7 @@
 /* import { Link } from '@tanstack/react-router' */
 import styles from './Register.module.css'
 /* import Button from '@/components/ui/Button/Button'  */
-import RightSide from '@/components/blocks/Login/RightSide/RightSide'
+import RightSide from '@/components/blocks/Register/RightSide/RightSide'
 import CreateForm from '@/components/blocks/Register/CreateForm/CreateForm'
 
 function Register() {
