@@ -4,8 +4,9 @@ dist-ssr
 *.local
 .DB_Store
 examples
+
 email.ts
-src/api.ts
+api.ts
 
 
 
