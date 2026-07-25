@@ -1,14 +1,14 @@
 import styles from './RightSide.module.css'
 import fontStyles from '@/styles/fontStyles.module.css'
 import Logo from '@/components/ui/Logo/Logo'
+
 import backgroundVideo from "@/assets/videos/dna-strand.mp4";
 
 function LoginRightSide() {
-
     return (
         <div className={styles.rightBackground}>
 
-            <video
+            {/* <video
                 className={styles.backgroundVideo}
                 autoPlay
                 muted
@@ -16,11 +16,13 @@ function LoginRightSide() {
                 playsInline
             >
                 <source src={backgroundVideo} type="video/mp4" />
-            </video>
+            </video> */}
 
-            <div className={styles.content}>
+            {/* <div className={styles.content}>
                 <Logo />
-            </div>
+            </div> */}
+
+            <Logo />
 
             <>
                 <div className={styles.emptySpace}></div>

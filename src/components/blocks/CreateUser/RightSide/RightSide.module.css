@@ -1,4 +1,4 @@
-/* .rightBackground {
+.rightBackground {
     flex: 1;
     width: 100%;
     height: 100%;
@@ -20,9 +20,9 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-} */
+} 
 
-.rightBackground {
+/* .rightBackground {
     position: relative;
     overflow: hidden;
 
@@ -41,69 +41,45 @@
 .backgroundVideo {
     position: absolute;
     inset: 0;
+
     width: 100%;
     height: 100%;
+
     object-fit: cover;
     z-index: 0;
-
-    /*   filter:
-        blur(1.5px) brightness(.8) saturate(.85) contrast(1.05); */
 }
 
-/* recreando el gradiente usando un pseudo-element */
+// recreando el gradiente usando un pseudo-element 
 .rightBackground::before {
     content: "";
+
     position: absolute;
     inset: 0;
-    z-index: 1;
-    pointer-events: none;
-
-    background:
-        radial-gradient(circle at bottom right,
-            #8b7cf659,
-            transparent 40%),
-        radial-gradient(circle at 80% 20%,
-            #788cff38,
-            transparent 35%),
-        linear-gradient(180deg,
-            #08080a59,
-            #08080ae6);
-}
-
-.rightBackground::after {
-    content: "";
-    position: absolute;
-    inset: -20%;
-    z-index: 1;
-    pointer-events: none;
 
     background:
         radial-gradient(
-            circle,
-            #5d5ba85c,
-            transparent 60%
+            circle at bottom right,
+            rgba(139,124,246,.35),
+            transparent 40%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(8,8,10,.35),
+            rgba(8,8,10,.9)
         );
 
-    animation: glowFloat 18s ease-in-out infinite alternate;
+    z-index: 1;
+    pointer-events: none;
 }
 
-@keyframes glowFloat {
-    from {
-        transform: translate(-8%, -5%) scale(1);
-    }
-    to {
-        transform: translate(8%, 6%) scale(1.2);
-    }
-}
-
-/* asegurandome de que el contenido permanece encima del background (gradient + video) */
+// asegurandome de que el contenido permanece encima del background (gradient + video) 
 .textContainer,
 .emptySpace {
     position: relative;
     z-index: 2;
 }
 
-/* para el logo */
+// para el logo 
 .content {
     position: relative;
     z-index: 2;
@@ -112,12 +88,12 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-}
+} */
 
 /* Text container */
 .textContainer {
-    /*     position: relative; */
-    /*     z-index: 1; */
+/*     position: relative; */
+/*     z-index: 1; */
     font-size: 18px;
     margin: 2rem;
     max-height: max-content;
