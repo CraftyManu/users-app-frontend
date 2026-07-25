@@ -79,9 +79,9 @@ reactjs/
         ├── Login/
         │   ├── Login.tsx
         │   └── Login.module.css
-        └── Register/
-            ├── Register.tsx
-            └── Register.module.css
+        └── CreateUser/
+            ├── CreateUser.tsx
+            └── CreateUser.module.css
 ```
 
 ### Convención de carpetas
@@ -113,6 +113,6 @@ function Button() {
 |---|---|
 | `/` | Home |
 | `/login` | Login |
-| `/register` | Register |
+| `/create-user` | Create User |
 
 Las rutas están definidas en `src/router.tsx` usando **TanStack Router** con routing basado en código (sin generación automática de archivos).

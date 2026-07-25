@@ -2,7 +2,7 @@ import { createRouter, createRoute, createRootRoute, Outlet } from '@tanstack/re
 
 import Home from '@/pages/Home/Home'
 import Login from '@/pages/Login/Login'
-import Register from '@/pages/Register/Register'
+import CreateUser from '@/pages/CreateUser/CreateUser'
 
 const rootRoute = createRootRoute({
     component: Outlet,
@@ -20,16 +20,16 @@ const loginRoute = createRoute({
     component: Login,
 })
 
-const registerRoute = createRoute({
+const createUserRoute = createRoute({
     getParentRoute: () => rootRoute,
-    path: '/register',
-    component: Register,
+    path: '/create-user',
+    component: CreateUser,
 })
 
 const routeTree = rootRoute.addChildren([
     homeRoute,
     loginRoute,
-    registerRoute,
+    createUserRoute,
 ])
 
 export const router = createRouter({ routeTree })  //se importa en App.tsx

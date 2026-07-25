@@ -77,8 +77,8 @@ function LoginForm() {
                 </Button>
             </form>
 
-            <Footer> ¿No tenés cuenta? <Link to='/register'>Registrate</Link> </Footer>
-        </div>
+{/*             <Footer> ¿No tenés cuenta? <Link to='/create-user'>Registrate</Link> </Footer>
+ */}        </div>
     )
 }
 
