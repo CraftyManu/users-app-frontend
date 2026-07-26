@@ -13,3 +13,6 @@ api.ts
 OFL.txt
 README.txt
 src/assets/fonts/Inter/Inter-Italic-VariableFont_opsz,wght.ttf
+
+
+authStorage.ts
