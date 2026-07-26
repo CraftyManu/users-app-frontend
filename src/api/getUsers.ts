@@ -8,9 +8,10 @@ import type { User } from '@/api/types'
 // -------------------------------------------------
 
 export async function getUsers(): Promise<User[]> {
-    // El token guardado en ele login prueba quienes somos
+    console.log('function getUsers in getUsers.ts(frontend)')
+    // El token guardado en el login prueba quienes somos
     const token = localStorage.getItem('token')
-    /* const token = getAuthToken() */
+    console.log(`token: ${token}`)
 
     const response = await fetch(`${API_URL}/users`, {
         headers: {
@@ -18,12 +19,20 @@ export async function getUsers(): Promise<User[]> {
             Authorization: `Bearer ${token}`,
         },
     })
+    console.log(`response: ${response}`)
+    console.log(response)
 
     const body = await response.json()
+
+    console.log(`body`)
+    console.log(body)
 
     if (!body.success) {
         throw new Error(body.message) // ej: "Acceso denegado", "Token inválido"
     }
+
+    console.log(`getUsers.ts -> body.data:`)
+    console.log(body.data)
 
     return body.data
 }

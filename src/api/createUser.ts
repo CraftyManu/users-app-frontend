@@ -33,7 +33,7 @@ export async function createUser(nombre: string, apellido: string, email: string
             localidad: 'Sin localidad',
             provincia: 'Sin provincia',
             pais: 'Argentina',
-            codigoPostal: '0000'
+            codigoPostal: '0000',
         }),
     })
 

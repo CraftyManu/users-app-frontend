@@ -15,6 +15,6 @@ export interface User {
     codigoPostal: string
     role: string
     userName: string
-    avatarURL?: string
-    user_url?: string
+    avatarURL?: string | null | undefined
+    user_url?: string 
 }

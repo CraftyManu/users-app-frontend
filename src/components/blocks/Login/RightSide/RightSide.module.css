@@ -60,14 +60,20 @@
 
     background:
         radial-gradient(circle at bottom right,
-            #8b7cf659,
+            rgba(139, 124, 246, 0.3),
+            transparent 70%),
+        radial-gradient(circle at 20% 10%,
+            rgba(120, 140, 255, 0.3),
+            rgba(120, 140, 255, 0.1),
             transparent 40%),
-        radial-gradient(circle at 80% 20%,
-            #788cff38,
-            transparent 35%),
+        linear-gradient(90deg,
+            rgb(0, 0, 0, 0.6),
+            rgba(10, 4, 50, 0.4),
+            rgba(27, 17, 60, 0.2),
+            rgba(4, 4, 94, 0.01)),
         linear-gradient(180deg,
-            #08080a59,
-            #08080ae6);
+            rgba(9, 9, 11, 0.2),
+            rgba(8, 8, 10, 0.7))
 }
 
 .rightBackground::after {
@@ -78,11 +84,9 @@
     pointer-events: none;
 
     background:
-        radial-gradient(
-            circle,
+        radial-gradient(circle,
             #5d5ba85c,
-            transparent 60%
-        );
+            transparent 60%);
 
     animation: glowFloat 18s ease-in-out infinite alternate;
 }
@@ -91,6 +95,7 @@
     from {
         transform: translate(-8%, -5%) scale(1);
     }
+
     to {
         transform: translate(8%, 6%) scale(1.2);
     }
