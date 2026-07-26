@@ -14,4 +14,7 @@ export interface User {
     pais: string
     codigoPostal: string
     role: string
+    userName: string
+    avatarURL?: string
+    user_url?: string
 }

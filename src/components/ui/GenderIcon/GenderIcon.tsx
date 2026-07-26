@@ -1,6 +1,5 @@
 import { Mars, Venus, CircleHelp } from "lucide-react";
-/* import styles from '@/components/ui/GenderIcon/GenderIcon.module.css'
- */
+
 interface GenderIconProps {
   gender?: string | null;
 }
@@ -15,5 +14,5 @@ export default function GenderIcon({ gender }: GenderIconProps) {
     return <span title="Femenino"> <Venus size={30} color="#E56AA6" aria-label="Femenino"/> </span>
   }
 
-  return <span title="No especificado"> <CircleHelp size={20} color="#888" aria-label="No Especificado"/> </span>
+  return <span title="Otro"> <CircleHelp size={20} color="#888" aria-label="Otro"/> </span>
 }

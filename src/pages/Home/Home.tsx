@@ -1,18 +1,3 @@
-/* import Navigation from '@/components/blocks/Navigation/Navigation'
-
-import styles from './Home.module.css'
-
-function Home() {
-    return (
-        <main className={[styles.container, styles.main].join(' ')}>
-            <Navigation />
-            <h1>Hello Home</h1>
-        </main>
-    )
-}
-
-export default Home */
-
 import { useEffect, useState } from 'react'
 import { useNavigate } from '@tanstack/react-router'
 import Button from '@/components/ui/Button/Button'
@@ -21,10 +6,11 @@ import styles from './Home.module.css'
 import { getUsers } from '@/api/getUsers'
 import { updateUser } from '@/api/updateUser'
 import type { User } from '@/api/types'
-/* import { clearAuth, getAuthToken } from '@/api/authStorage' */
 import GenderIcon from '@/components/ui/GenderIcon/GenderIcon'
+import Avatar from '@/components/ui/Avatar/Avatar'
 
 const ROLES = ['ROOT', 'ADMIN', 'USER', 'GUEST']
+const GENEROS = ['Femenino', 'Masculino', 'Otro']
 
 function Home() {
     const navigate = useNavigate()
@@ -124,10 +110,17 @@ function Home() {
                                     <td className={styles.td}>
                                         <div className={styles.userCell}>
                                             {/* La API no devuelve imagen: generamos un avatar con el nombre */}
-                                            <img
+                                            {/* <img
                                                 className={styles.avatar}
                                                 src={`https://ui-avatars.com/api/?name=${user.nombre}+${user.apellido}&background=random`}
                                                 alt={`${user.nombre} ${user.apellido}`}
+                                            /> */}
+                                            <Avatar
+                                                avatarURL={user.avatarURL}
+                                                userUrl={user.user_url}
+                                                genero={user.genero}
+                                                nombre={user.nombre}
+                                                apellido={user.apellido}
                                             />
                                             <span>{user.nombre} {user.apellido}</span>
                                         </div>
@@ -186,13 +179,15 @@ function UserDetails({ user }: { user: User }) {
         ['Rol', user.role],
         ['Género', user.genero],
         ['Edad', String(user.edad)],
-        ['Fecha de nacimiento', user.fechaNacimiento?.slice(0, 10)],
+        ['Fecha de nacimiento', user.fechaNacimiento?.slice(0, 10) ?? ''],
         ['Teléfono', user.telefono],
         ['Dirección', user.direccion],
         ['Localidad', user.localidad],
         ['Provincia', user.provincia],
         ['País', user.pais],
         ['Código postal', user.codigoPostal],
+        ['UserName', user.userName],
+        ['Avatar_URL', user.avatarURL ?? ''],
     ]
 
     return (
@@ -232,6 +227,9 @@ function UserEditForm({
     const [pais, setPais] = useState(user.pais)
     const [codigoPostal, setCodigoPostal] = useState(user.codigoPostal)
     const [role, setRole] = useState(user.role)
+    const [userName, setUserName] = useState(user.userName)
+    const [avatarURL, setAvatarURL] = useState(user.avatarURL ?? '')
+
     const [error, setError] = useState<string | null>(null)
     const [loading, setLoading] = useState(false)
 
@@ -253,6 +251,8 @@ function UserEditForm({
                 provincia,
                 pais,
                 codigoPostal,
+                userName,
+                avatarURL,
             }
 
             if (role !== user.role) {
@@ -298,6 +298,19 @@ function UserEditForm({
             <div className={styles.formRow}>
                 <div>
                     <label className={styles.label} htmlFor="edit-genero">Género</label>
+
+                    <select
+                        className={styles.select}
+                        id="edit-genero"
+                        value={genero}
+                        onChange={(e) => setRole(e.target.value)}
+                    >
+                        {GENEROS.map((r) => (
+                            <option key={r} value={r}>{r}</option>
+                        ))}
+                    </select>
+
+                    {/* <label className={styles.label} htmlFor="edit-genero">Género</label>
                     <input
                         className={styles.input}
                         id="edit-genero"
@@ -305,9 +318,11 @@ function UserEditForm({
                         value={genero}
                         onChange={(e) => setGenero(e.target.value)}
                         required
-                    />
+                    /> */}
                 </div>
-                <div>
+
+
+                {/* <div>
                     <label className={styles.label} htmlFor="edit-edad">Edad</label>
                     <input
                         className={styles.input}
@@ -319,7 +334,7 @@ function UserEditForm({
                         onChange={(e) => setEdad(e.target.value)}
                         required
                     />
-                </div>
+                </div> */}
             </div>
 
             <div className={styles.formRow}>
@@ -403,6 +418,28 @@ function UserEditForm({
                         value={codigoPostal}
                         onChange={(e) => setCodigoPostal(e.target.value)}
                         required
+                    />
+                </div>
+
+                <div>
+                    <label className={styles.label} htmlFor="edit-userName">userName</label>
+                    <input
+                        className={styles.input}
+                        id="edit-userName"
+                        type="text"
+                        value={userName}
+                        onChange={(e) => setUserName(e.target.value)}
+                    />
+                </div>
+
+                <div>
+                    <label className={styles.label} htmlFor="edit-avatarURL">Avatar_URL</label>
+                    <input
+                        className={styles.input}
+                        id="edit-avatarURL"
+                        type="text"
+                        value={avatarURL}
+                        onChange={(e) => setAvatarURL(e.target.value)}
                     />
                 </div>
             </div>
