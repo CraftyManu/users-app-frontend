@@ -22,8 +22,8 @@ function CreateForm() {
 
             <Button variant='primary' type='submit'>Registrarse</Button>
 
-            <Footer>¿Ya tenés cuenta? <Link to='/login'>Iniciá Sesión</Link> </Footer>
-        </div>
+{/*             <Footer>¿Ya tenés cuenta? <Link to='/login'>Iniciá Sesión</Link> </Footer>
+ */}        </div>
     )
 }
 

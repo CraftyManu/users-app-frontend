@@ -1,5 +1,6 @@
 import { API_URL } from '@/config/globals'
 import type { User } from '@/api/types'
+/* import { getAuthToken } from '@/api/authStorage' */
 
 // El email no se puede modificar: el backend rechaza el request si viene en el body
 export type UpdateUserPayload = Partial<Omit<User, '_id' | 'email'>>
@@ -9,6 +10,7 @@ export type UpdateUserPayload = Partial<Omit<User, '_id' | 'email'>>
 // Es una ruta protegida: solo un admin ya logueado puede editar usuarios
 // ------------------------------------------------------------
 export async function updateUser(id: string, data: UpdateUserPayload): Promise<User> {
+    /*  const token = getAuthToken() */
     const token = localStorage.getItem('token')
 
     const response = await fetch(`${API_URL}/users/${id}`, {

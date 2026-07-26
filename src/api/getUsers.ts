@@ -1,5 +1,6 @@
 import { API_URL } from "@/config/globals";
 import type { User } from '@/api/types'
+/* import { getAuthToken } from '@/api/authStorage' */
 
 // -------------------------------------------------
 // GET /users →  devuelve la lista de usuarios
@@ -9,6 +10,7 @@ import type { User } from '@/api/types'
 export async function getUsers(): Promise<User[]> {
     // El token guardado en ele login prueba quienes somos
     const token = localStorage.getItem('token')
+    /* const token = getAuthToken() */
 
     const response = await fetch(`${API_URL}/users`, {
         headers: {
