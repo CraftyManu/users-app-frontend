@@ -19,13 +19,10 @@ export async function getUsers(): Promise<User[]> {
             Authorization: `Bearer ${token}`,
         },
     })
-    console.log(`response: ${response}`)
-    console.log(response)
+    console.log(`response.status:`, response.status)
+/*     console.log(response.status) */
 
     const body = await response.json()
-
-    console.log(`body`)
-    console.log(body)
 
     if (!body.success) {
         throw new Error(body.message) // ej: "Acceso denegado", "Token inválido"
