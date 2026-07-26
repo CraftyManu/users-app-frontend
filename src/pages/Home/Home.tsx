@@ -218,7 +218,7 @@ function UserEditForm({
     const [nombre, setNombre] = useState(user.nombre)
     const [apellido, setApellido] = useState(user.apellido)
     const [genero, setGenero] = useState(user.genero)
-    const [edad, setEdad] = useState(String(user.edad))
+    /* const [edad, setEdad] = useState(String(user.edad)) */
     const [fechaNacimiento, setFechaNacimiento] = useState(user.fechaNacimiento?.slice(0, 10) ?? '')
     const [telefono, setTelefono] = useState(user.telefono)
     const [direccion, setDireccion] = useState(user.direccion)
@@ -243,7 +243,6 @@ function UserEditForm({
                 nombre,
                 apellido,
                 genero,
-                edad: Number(edad),
                 fechaNacimiento,
                 telefono,
                 direccion,
@@ -303,7 +302,7 @@ function UserEditForm({
                         className={styles.select}
                         id="edit-genero"
                         value={genero}
-                        onChange={(e) => setRole(e.target.value)}
+                        onChange={(e) => setGenero(e.target.value)}
                     >
                         {GENEROS.map((r) => (
                             <option key={r} value={r}>{r}</option>
