@@ -28,11 +28,8 @@
 }
 
 .label {
-    /*     font-size: 13px; */
     font-weight: 500;
     color: #ccc;
-    /*     margin-bottom: 6px; */
-
     margin-bottom: .55rem;
     letter-spacing: .02em;
     text-transform: uppercase;

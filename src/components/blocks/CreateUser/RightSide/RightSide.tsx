@@ -2,8 +2,6 @@ import styles from './RightSide.module.css'
 import fontStyles from '@/styles/fontStyles.module.css'
 import Logo from '@/components/ui/Logo/Logo'
 
-import backgroundVideo from "@/assets/videos/dna-strand.mp4";
-
 function LoginRightSide() {
     return (
         <div className={styles.rightBackground}>

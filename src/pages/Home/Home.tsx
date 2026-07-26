@@ -21,6 +21,8 @@ import styles from './Home.module.css'
 import { getUsers } from '@/api/getUsers'
 import { updateUser } from '@/api/updateUser'
 import type { User } from '@/api/types'
+/* import { clearAuth, getAuthToken } from '@/api/authStorage' */
+import GenderIcon from '@/components/ui/GenderIcon/GenderIcon'
 
 const ROLES = ['ROOT', 'ADMIN', 'USER', 'GUEST']
 
@@ -131,7 +133,10 @@ function Home() {
                                         </div>
                                     </td>
                                     <td className={styles.td}>{user.email}</td>
-                                    <td className={styles.td}>{user.genero}</td>
+                                    {/* <td className={styles.td}>{user.genero}</td> */}
+                                    <td className={`${styles.td} ${styles.genderCell}`}>
+                                        <GenderIcon gender={user.genero} />
+                                    </td>
                                     <td className={styles.td}>{user.localidad}</td>
                                     <td className={styles.td}>
                                         <span className={`${styles.badge} ${styles[`badge__${user.role.toLowerCase()}`] ?? ''}`}>
@@ -235,7 +240,8 @@ function UserEditForm({
         setError(null)
         setLoading(true)
         try {
-            const updated = await updateUser(user._id, {
+
+            const payload: any = {
                 nombre,
                 apellido,
                 genero,
@@ -247,8 +253,13 @@ function UserEditForm({
                 provincia,
                 pais,
                 codigoPostal,
-                role,
-            })
+            }
+
+            if (role !== user.role) {
+                payload.role = role
+            }
+
+            const updated = await updateUser(user._id, payload)
             onSaved(updated)
         } catch (error: any) {
             setError(error.message)

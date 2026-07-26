@@ -1,10 +1,9 @@
-/* import { Link } from '@tanstack/react-router' */
 import styles from './CreateUser.module.css'
-/* import Button from '@/components/ui/Button/Button'  */
 import RightSide from '@/components/blocks/CreateUser/RightSide/RightSide'
 import CreateForm from '@/components/blocks/CreateUser/CreateForm/CreateForm'
 
 function CreateUser() {
+
     return (
         <main className={`${styles.container} ${styles.main}`}>
             <section className={styles.left}>

@@ -1,12 +1,11 @@
-import { Link } from '@tanstack/react-router'
 import styles from './LoginForm.module.css'
 import Button from '@/components/ui/Button/Button'
 import Title from '@/components/ui/Title/Title'
 import Subtitle from '@/components/ui/Subtitle/Subtitle'
-import Footer from '@/components/ui/Footer/Footer'
 import { useState } from 'react'
-import { useNavigate } from "@tanstack/react-router"
+import { useNavigate } from '@tanstack/react-router'
 import { login } from '@/api/login'
+/* import { saveAuth } from '@/api/authStorage' */
 
 function LoginForm() {
     const navigate = useNavigate()
@@ -23,7 +22,6 @@ function LoginForm() {
         setLoading(true)
         try {
             const data = await login(email, password)
-            // Guardamos el token para las futuras peticiones autenticadas
             localStorage.setItem('token', data.token)
             localStorage.setItem('role', data.role)
             navigate({ to: '/' })
@@ -35,10 +33,10 @@ function LoginForm() {
     }
 
     return (
-        <div className={styles.form} onSubmit={handleSubmit}>
+        <div className={styles.form}>
             <Title>Iniciar Sesión</Title>
             <Subtitle>Ingresá tu email y contraseña para continuar</Subtitle>
-            <form action="">
+            <form onSubmit={handleSubmit}>
 
                 <label className={styles.label} htmlFor="email">Email</label>
                 <input
@@ -64,13 +62,6 @@ function LoginForm() {
 
                 {/* Mensaje de error que viene del backend */}
                 {error && <p className={styles.error}>{error}</p>}
-
-                {/*  <div className={styles.checkboxContainer}>
-                    <input type="checkbox" id="recordarme" />
-                    <label className={styles.label} htmlFor="recordarme">
-                        Recordarme
-                    </label>
-                </div> */}
 
                 <Button variant='primary' type='submit' disabled={loading}>
                     {loading ? 'Ingresando...' : 'Iniciar Sesión'}

@@ -40,20 +40,6 @@
     }
 }
 
-/* @media (max-height: 450px) {
-    .left {
-        justify-content: flex-start;
-        align-items: stretch;
-        padding: 20px;
-        overflow-y: auto;
-    }
-
-    .form {
-        padding: 24px;
-        margin: auto 0;
-    }
-} */
-
 @media (max-height: 450px) {
     .container {
         height: auto;
