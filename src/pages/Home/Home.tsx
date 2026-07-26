@@ -11,6 +11,8 @@ import Avatar from '@/components/ui/Avatar/Avatar'
 
 const ROLES = ['ROOT', 'ADMIN', 'USER', 'GUEST']
 const GENEROS = ['Femenino', 'Masculino', 'Otro']
+type SortKey = 'nombre' | 'email' | 'genero' | 'localidad' | 'role'
+type SortDirection = 'asc' | 'desc'
 
 function Home() {
     const navigate = useNavigate()
@@ -18,6 +20,10 @@ function Home() {
     const [users, setUsers] = useState<User[]>([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
+    const [sortConfig, setSortConfig] = useState<{ key: SortKey; direction: SortDirection }>({
+        key: 'nombre',
+        direction: 'asc',
+    })
 
     // Usuario seleccionado para ver o editar en el modal
     const [modalUser, setModalUser] = useState<User | null>(null)
@@ -32,9 +38,13 @@ function Home() {
         // Pedimos los usuarios a la API al montar el componente
         async function loadUsers() {
             try {
+                console.log('function loadUsers')
                 const data = await getUsers()
+                console.log('data in Home useEffect -> loadUsers')
+                console.log(data)
                 setUsers(data)
             } catch (error: any) {
+                console.log('error in function loadUsers')
                 setError(error.message)
             } finally {
                 setLoading(false)
@@ -71,6 +81,27 @@ function Home() {
         closeModal()
     }
 
+    function handleSort(key: SortKey) {
+        setSortConfig((prev) => {
+            if (prev.key === key) {
+                return {
+                    key,
+                    direction: prev.direction === 'asc' ? 'desc' : 'asc',
+                }
+            }
+
+            return { key, direction: 'asc' }
+        })
+    }
+
+    const sortedUsers = [...users].sort((a, b) => {
+        const aValue = String(a[sortConfig.key] ?? '').toLocaleLowerCase()
+        const bValue = String(b[sortConfig.key] ?? '').toLocaleLowerCase()
+        const comparison = aValue.localeCompare(bValue)
+
+        return sortConfig.direction === 'asc' ? comparison : comparison * -1
+    })
+
     return (
         <main className={styles.container}>
 
@@ -96,16 +127,36 @@ function Home() {
                     <table className={styles.table}>
                         <thead>
                             <tr>
-                                <th className={styles.th}>Usuario</th>
-                                <th className={styles.th}>Email</th>
-                                <th className={styles.th}>Género</th>
-                                <th className={styles.th}>Localidad</th>
-                                <th className={styles.th}>Rol</th>
+                                <th className={styles.th}>Usuario 
+                                    <button type="button" className={styles.sortButton} onClick={() => handleSort('nombre')}>
+                                        {sortConfig.key === 'nombre' ? (sortConfig.direction === 'asc' ? '▲' : '▼') : '↕'}
+                                    </button>
+                                </th>
+                                <th className={styles.th}>Email 
+                                    <button type="button" className={styles.sortButton} onClick={() => handleSort('email')}>
+                                        {sortConfig.key === 'email' ? (sortConfig.direction === 'asc' ? '▲' : '▼') : '↕'}
+                                    </button>
+                                </th>
+                                <th className={styles.th}>Género 
+                                    <button type="button" className={styles.sortButton} onClick={() => handleSort('genero')}>
+                                        {sortConfig.key === 'genero' ? (sortConfig.direction === 'asc' ? '▲' : '▼') : '↕'}
+                                    </button>
+                                </th>
+                                <th className={styles.th}>Localidad 
+                                    <button type="button" className={styles.sortButton} onClick={() => handleSort('localidad')}>
+                                        {sortConfig.key === 'localidad' ? (sortConfig.direction === 'asc' ? '▲' : '▼') : '↕'}
+                                    </button>
+                                </th>
+                                <th className={styles.th}>Rol 
+                                    <button type="button" className={styles.sortButton} onClick={() => handleSort('role')}>
+                                        {sortConfig.key === 'role' ? (sortConfig.direction === 'asc' ? '▲' : '▼') : '↕'}
+                                    </button>
+                                </th>
                                 <th className={styles.th}>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {users.map((user) => (
+                            {sortedUsers.map((user) => (
                                 <tr key={user._id} className={styles.tr}>
                                     <td className={styles.td}>
                                         <div className={styles.userCell}>

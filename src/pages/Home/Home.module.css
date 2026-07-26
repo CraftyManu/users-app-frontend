@@ -109,26 +109,36 @@
     background-color: #111;
 }
 
-/* .th {
-    padding: 14px 16px;
-    text-align: left;
-    font-size: 12px;
-    font-weight: 600;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-bottom: 1px solid #222;
-    background-color: #0f0f0f;
-} */
-
 .th {
+    text-align: left;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-bottom: 1px solid #222;
     background:
-        linear-gradient(rgba(255, 255, 255, .03), rgba(255, 255, 255, 0));
-
-    color: #8e97ad;
-    font-size: 11px;
-    letter-spacing: .14em;
+        linear-gradient(rgba(35, 24, 97, 0.6), rgba(255, 255, 255, 0.1));
+    color: var(--color-accent-light);
+    letter-spacing: .1em;
     padding: 18px 22px;
+    text-align: center;
+}
+
+.sortButton {
+    border: 0;
+    background: transparent;
+    color: var(--color-accent);
+    font: inherit;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    cursor: pointer;
+    padding: 0;
+    opacity: 0.5;
+    margin-left: 5px;
+}
+
+.sortButton:hover {
+    opacity: 1;
 }
 
 .tr {
@@ -165,7 +175,7 @@
 
 .td {
     padding: 14px 16px;
-    font-size: 14px;
+    font-size: 16px;
     color: #ccc;
     white-space: nowrap;
     text-align: center;
@@ -458,7 +468,7 @@ option:disabled {
 }
 
 .genderCell {
-    width: 50px;
+
 }
 
 .genderCell svg {
