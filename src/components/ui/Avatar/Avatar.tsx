@@ -11,7 +11,25 @@ interface AvatarProps {
 }
 
 function Avatar({ avatarURL, userUrl, genero, nombre, apellido }: AvatarProps) {
-    const [imageSrc, setImageSrc] = useState<string>(avatarURL || defaultAvatar);
+    const genderParam = genero === 'Masculino' ? 'male' : genero === 'Femenino' ? 'female' : undefined;
+
+    const style =
+    genderParam === 'female'
+        ? 'avataaars'
+        : genderParam === 'male'
+        ? 'toon-head'
+        : 'lorelei';
+
+    const imageSrc =
+        avatarURL ||
+        userUrl ||
+        `https://api.dicebear.com/9.x/${style}/svg?seed=${encodeURIComponent(
+            `${nombre} ${apellido}`
+        )}`;
+
+        `https://randomuser.me/api/?inc=picture&noinfo${genderParam ? `&gender=${genderParam}` : ''}`;
+
+    /* const [imageSrc, setImageSrc] = useState<string>(avatarURL || defaultAvatar);
 
     useEffect(() => {
         let isMounted = true;
@@ -55,18 +73,22 @@ function Avatar({ avatarURL, userUrl, genero, nombre, apellido }: AvatarProps) {
         return () => {
             isMounted = false;
         };
-    }, [avatarURL, userUrl]);
+    }, [avatarURL, userUrl]); */
+
 
     const altText = [nombre, apellido].filter(Boolean).join(' ').trim() || 'Usuario';
+
+
 
     return (
         <img
             className={styles.avatar}
             src={imageSrc}
             alt={altText}
-            onError={(event) => {
-                event.currentTarget.src = defaultAvatar;
-            }}
+            onError={(e) => {
+                e.currentTarget.src = defaultAvatar;
+            }
+            }
         />
     );
 }
