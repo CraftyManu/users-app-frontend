@@ -40,10 +40,7 @@ function Home() {
         // Pedimos los usuarios a la API al montar el componente
         async function loadUsers() {
             try {
-                console.log('function loadUsers')
                 const data = await getUsers()
-                console.log('data in Home useEffect -> loadUsers')
-                console.log(data)
                 setUsers(data)
             } catch (error: any) {
                 console.log('error in function loadUsers')
@@ -100,7 +97,6 @@ function Home() {
         const aValue = String(a[sortConfig.key] ?? '').toLocaleLowerCase()
         const bValue = String(b[sortConfig.key] ?? '').toLocaleLowerCase()
         const comparison = aValue.localeCompare(bValue)
-
         return sortConfig.direction === 'asc' ? comparison : comparison * -1
     })
 
@@ -255,16 +251,16 @@ function UserDetails({ user }: { user: User }) {
 
     return (
         <>
-        <dl className={styles.viewGrid}>
-            {fields.map(([label, value]) => (
-                <div className={styles.viewRow} key={label}>
-                    <dt className={styles.viewLabel}>{label}</dt>
-                    <dd className={styles.viewValue}>{value || '-'}</dd>
-                </div>
-            ))}
-        </dl>
+            <dl className={styles.viewGrid}>
+                {fields.map(([label, value]) => (
+                    <div className={styles.viewRow} key={label}>
+                        <dt className={styles.viewLabel}>{label}</dt>
+                        <dd className={styles.viewValue}>{value || '-'}</dd>
+                    </div>
+                ))}
+            </dl>
 
-        <GoogleMap user={user} />
+            <GoogleMap user={user} />
         </>
     )
 }
