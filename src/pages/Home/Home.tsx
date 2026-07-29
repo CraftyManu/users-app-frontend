@@ -9,6 +9,7 @@ import type { User } from '@/api/types'
 import GenderIcon from '@/components/ui/GenderIcon/GenderIcon'
 import Avatar from '@/components/ui/Avatar/Avatar'
 import backgroundVideo from "@/assets/videos/dna-strand.mp4";
+import GoogleMap from '@/components/ui/GoogleMap/GoogleMap'
 
 const ROLES = ['ROOT', 'ADMIN', 'USER', 'GUEST']
 const GENEROS = ['Femenino', 'Masculino', 'Otro']
@@ -253,6 +254,7 @@ function UserDetails({ user }: { user: User }) {
     ]
 
     return (
+        <>
         <dl className={styles.viewGrid}>
             {fields.map(([label, value]) => (
                 <div className={styles.viewRow} key={label}>
@@ -261,6 +263,9 @@ function UserDetails({ user }: { user: User }) {
                 </div>
             ))}
         </dl>
+
+        <GoogleMap user={user} />
+        </>
     )
 }
 
