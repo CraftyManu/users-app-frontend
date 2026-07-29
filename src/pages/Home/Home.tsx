@@ -8,6 +8,7 @@ import { updateUser } from '@/api/updateUser'
 import type { User } from '@/api/types'
 import GenderIcon from '@/components/ui/GenderIcon/GenderIcon'
 import Avatar from '@/components/ui/Avatar/Avatar'
+import backgroundVideo from "@/assets/videos/dna-strand.mp4";
 
 const ROLES = ['ROOT', 'ADMIN', 'USER', 'GUEST']
 const GENEROS = ['Femenino', 'Masculino', 'Otro']
@@ -105,10 +106,20 @@ function Home() {
     return (
         <main className={styles.container}>
 
+            <video
+                className={styles.backgroundVideo}
+                autoPlay
+                muted
+                loop
+                playsInline
+            >
+                <source src={backgroundVideo} type="video/mp4" />
+            </video>
+
             <div className={styles.header}>
                 <h1 className={styles.title}>Usuarios</h1>
                 <div className={styles.headerActions}>
-                    <Button variant="primary" onClick={() => navigate({ to: '/create-user' })}>+ Agregar</Button>
+                    <Button variant="terciary" onClick={() => navigate({ to: '/create-user' })}>+ Agregar</Button>
                     <Button variant="secondary" onClick={handleLogout}>Cerrar sesión</Button>
                 </div>
             </div>
@@ -127,27 +138,27 @@ function Home() {
                     <table className={styles.table}>
                         <thead>
                             <tr>
-                                <th className={styles.th}>Usuario 
+                                <th className={styles.th}>Usuario
                                     <button type="button" className={styles.sortButton} onClick={() => handleSort('nombre')}>
                                         {sortConfig.key === 'nombre' ? (sortConfig.direction === 'asc' ? '▲' : '▼') : '↕'}
                                     </button>
                                 </th>
-                                <th className={styles.th}>Email 
+                                <th className={styles.th}>Email
                                     <button type="button" className={styles.sortButton} onClick={() => handleSort('email')}>
                                         {sortConfig.key === 'email' ? (sortConfig.direction === 'asc' ? '▲' : '▼') : '↕'}
                                     </button>
                                 </th>
-                                <th className={styles.th}>Género 
+                                <th className={styles.th}>Género
                                     <button type="button" className={styles.sortButton} onClick={() => handleSort('genero')}>
                                         {sortConfig.key === 'genero' ? (sortConfig.direction === 'asc' ? '▲' : '▼') : '↕'}
                                     </button>
                                 </th>
-                                <th className={styles.th}>Localidad 
+                                <th className={styles.th}>Localidad
                                     <button type="button" className={styles.sortButton} onClick={() => handleSort('localidad')}>
                                         {sortConfig.key === 'localidad' ? (sortConfig.direction === 'asc' ? '▲' : '▼') : '↕'}
                                     </button>
                                 </th>
-                                <th className={styles.th}>Rol 
+                                <th className={styles.th}>Rol
                                     <button type="button" className={styles.sortButton} onClick={() => handleSort('role')}>
                                         {sortConfig.key === 'role' ? (sortConfig.direction === 'asc' ? '▲' : '▼') : '↕'}
                                     </button>
