@@ -58,3 +58,25 @@
 .terciary:hover {
     box-shadow: 0px 0px 0px 2px var(--color-accent);
 }
+
+.delete {
+    /*     background-color: #dc2626;
+    color: white; */
+    background-color: var(--color-text);
+    color: red;
+    font-size: larger;
+    font-weight: 500;
+    width: 100%;
+    padding: 0.5rem;
+}
+
+.delete:hover {
+    background-color: #b91c1c; 
+    opacity: 0.8;
+    text-shadow: 
+    0 0 5px #fff,       /* Bright inner core */
+    0 0 10px #fff,      /* Intense middle glow */
+    0 0 20px #fff,      /* Soft outer glow */
+    0 0 50px #fff,      /* Broad environmental halo */
+    0 0 70px #fff;
+}
