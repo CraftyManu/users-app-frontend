@@ -107,15 +107,10 @@
 /* ============================================================
                                   TABLE
   ============================================================ */
-/* .tableWrapper {
-    overflow-x: auto;
-    border-radius: 12px;
-    border: 1px solid #222;
-} */
 
 .tableWrapper {
     border-radius: 18px;
-    overflow: hidden;
+    /*     overflow: hidden; */
     border: 1px solid rgba(255, 255, 255, .06);
     background: rgba(20, 22, 31, .75);
     box-shadow:
@@ -129,19 +124,45 @@
     background-color: #111;
 }
 
+/* .table thead {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+} */
+
 .th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
     text-align: left;
     font-size: 16px;
     font-weight: 700;
     text-transform: uppercase;
     border-bottom: 1px solid #222;
     background:
-        linear-gradient(rgba(35, 24, 97, 0.6), rgba(255, 255, 255, 0.1));
+        linear-gradient(rgba(28, 19, 77, 0.6), rgba(255, 255, 255, 0.1)),
+        linear-gradient(rgb(6, 4, 21), rgb(18, 11, 37));
     color: var(--color-accent-light);
     letter-spacing: .1em;
     padding: 18px 22px;
     text-align: center;
+    background-attachment: fixed;    /* ensures background stays fixed when scrolling */
 }
+
+/* Round corners for the first row of th elements */
+    .table thead tr:first-child th:first-child {
+        border-top-left-radius: 18px;
+    }
+
+    .table thead tr:first-child th:last-child {
+        border-top-right-radius: 18px;
+    }
+
+    .table:first-child {
+        border-top-right-radius: 18px;
+        border-top-left-radius: 18px;
+    }
 
 .sortButton {
     border: 0;

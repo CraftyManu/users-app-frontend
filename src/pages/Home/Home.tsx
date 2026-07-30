@@ -5,6 +5,7 @@ import Modal from '@/components/blocks/Modal/Modal'
 import styles from './Home.module.css'
 import { getUsers } from '@/api/getUsers'
 import { updateUser } from '@/api/updateUser'
+import { deleteUser } from '@/api/deleteUser'
 import type { User } from '@/api/types'
 import GenderIcon from '@/components/ui/GenderIcon/GenderIcon'
 import Avatar from '@/components/ui/Avatar/Avatar'
@@ -30,6 +31,10 @@ function Home() {
     // Usuario seleccionado para ver o editar en el modal
     const [modalUser, setModalUser] = useState<User | null>(null)
     const [modalMode, setModalMode] = useState<'view' | 'edit' | null>(null)
+
+
+    // Get user role from localStorage
+    const userRole = localStorage.getItem('role') || 'GUEST'
 
     useEffect(() => {
         // Protección mínima de ruta: sin token no tiene sentido estar acá
@@ -78,6 +83,46 @@ function Home() {
     function handleUserUpdated(updated: User) {
         setUsers((prev) => prev.map((u) => (u._id === updated._id ? updated : u)))
         closeModal()
+    }
+
+    // Handle user deletion
+    async function handleDeleteUser(userId: string) {
+        // Confirmación antes de eliminar
+        if (!confirm('¿Estás seguro de que deseas eliminar este usuario? Esta acción no se puede deshacer.')) {
+            return
+        }
+
+        try {
+            await deleteUser(userId)
+            // Remover el usuario de la lista
+            setUsers((prev) => prev.filter((u) => u._id !== userId))
+            // Cerrar el modal si está abierto
+            closeModal()
+            // Mostrar mensaje de éxito (opcional)
+            alert('Usuario eliminado correctamente')
+        } catch (error: any) {
+            console.error('Error al eliminar usuario:', error)
+            alert(`Error al eliminar usuario: ${error.message}`)
+        }
+    }
+
+    // Check if user can delete a specific target user
+    function canDeleteUser(targetUser: User): boolean {
+        const currentRole = userRole.toUpperCase()
+        const targetRole = targetUser.role.toUpperCase()
+
+        // ROOT puede eliminar a todos excepto a sí mismo (previene auto-eliminación)
+        if (currentRole === 'ROOT') {
+            return true // ROOT can delete anyone
+        }
+
+        // ADMIN solo puede eliminar USER y GUEST
+        if (currentRole === 'ADMIN') {
+            return targetRole === 'USER' || targetRole === 'GUEST'
+        }
+
+        // USER y GUEST no pueden eliminar a nadie
+        return false
     }
 
     function handleSort(key: SortKey) {
@@ -204,6 +249,7 @@ function Home() {
                                             >
                                                 Editar
                                             </button>
+
                                         </div>
                                     </td>
                                 </tr>
@@ -220,7 +266,8 @@ function Home() {
             >
                 {modalMode === 'view' && modalUser && <UserDetails user={modalUser} />}
                 {modalMode === 'edit' && modalUser && (
-                    <UserEditForm user={modalUser} onCancel={closeModal} onSaved={handleUserUpdated} />
+                    <UserEditForm user={modalUser} onCancel={closeModal} onSaved={handleUserUpdated} onDelete={handleDeleteUser}
+                        canDelete={canDeleteUser(modalUser)} />
                 )}
             </Modal>
 
@@ -231,7 +278,13 @@ function Home() {
 // ------------------------------------------------------------
 // Vista "Ver": detalle de usuario en modo solo lectura
 // ------------------------------------------------------------
-function UserDetails({ user }: { user: User }) {
+function UserDetails({
+    user, /* onDelete, canDelete */
+}: {
+    user: User
+    /*     onDelete: (userId: string) => Promise<void>
+        canDelete: boolean */
+}) {
     const fields: [string, string][] = [
         ['Nombre', `${user.nombre} ${user.apellido}`],
         ['Email', user.email],
@@ -273,10 +326,15 @@ function UserEditForm({
     user,
     onCancel,
     onSaved,
+    onDelete,
+    canDelete
+
 }: {
     user: User
     onCancel: () => void
     onSaved: (user: User) => void
+    onDelete: (userId: string) => Promise<void>
+    canDelete: boolean
 }) {
     const [nombre, setNombre] = useState(user.nombre)
     const [apellido, setApellido] = useState(user.apellido)
@@ -521,6 +579,13 @@ function UserEditForm({
             {error && <p className={styles.error}>{error}</p>}
 
             <div className={styles.modalActions}>
+                {canDelete && (
+                    <span title="Eliminar Usuario">
+                    <Button variant="delete" type="button"
+                        onClick={() => onDelete(user._id)}>❌
+                    </Button>
+                    </span>
+                )}
                 <Button variant="secondary" type="button" onClick={onCancel}>Cancelar</Button>
                 <Button variant="primary" type="submit" disabled={loading}>
                     {loading ? 'Guardando...' : 'Guardar cambios'}
