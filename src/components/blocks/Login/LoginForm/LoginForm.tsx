@@ -5,6 +5,8 @@ import Subtitle from '@/components/ui/Subtitle/Subtitle'
 import { useState } from 'react'
 import { useNavigate } from '@tanstack/react-router'
 import { login } from '@/api/login'
+import { Eye, EyeOff } from "lucide-react";
+
 
 function LoginForm() {
     const navigate = useNavigate()
@@ -14,6 +16,8 @@ function LoginForm() {
     const [password, setPassword] = useState('')
     const [error, setError] = useState<string | null>(null)
     const [loading, setLoading] = useState(false)
+          const [showPassword, setShowPassword] = useState(false);
+
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault() // Evita que el navegador recargue la página
@@ -48,16 +52,25 @@ function LoginForm() {
                     required
                 />
 
-                <label className={styles.label} htmlFor="password">Contraseña</label>
-                <input
-                    className={styles.input}
-                    id='password'
-                    type="password"
-                    placeholder='Contraseña'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
+                <div className={styles.passwordField}>
+                    <label className={styles.label} htmlFor="password">Contraseña</label>
+                    <input
+                        className={styles.input}
+                        id='password'
+                        /* type="password" */
+                        type={showPassword ? "text" : "password"}
+                        placeholder='Contraseña'
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                    <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                    >
+                        {showPassword ? <EyeOff size={20}/> : <Eye size={20}/>}
+                    </button>
+                </div>
 
                 {/* Mensaje de error que viene del backend */}
                 {error && <p className={styles.error}>{error}</p>}
@@ -67,7 +80,7 @@ function LoginForm() {
                 </Button>
             </form>
 
-{/*             <Footer> ¿No tenés cuenta? <Link to='/create-user'>Registrate</Link> </Footer>
+            {/*             <Footer> ¿No tenés cuenta? <Link to='/create-user'>Registrate</Link> </Footer>
  */}        </div>
     )
 }

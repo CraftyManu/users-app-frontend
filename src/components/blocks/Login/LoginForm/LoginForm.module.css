@@ -11,7 +11,7 @@
     border: 1px solid #ffffff0d;
 
     animation: fadeUp .7s ease;
-        overflow-y: auto;
+    overflow-y: auto;
 
 }
 
@@ -55,17 +55,44 @@
     border-color: var(--color-primary-hover);
 }
 
-.checkboxContainer {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 0.75rem;
-    margin: .75rem 0 2rem;
+/* Container must be relative so the button can position itself inside it */
+.passwordField {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 300px;
 }
 
-.checkboxContainer input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
+/* Give the input right padding so text doesn't hide behind the button */
+
+.passwordField input {
+    width: 100%;
+    padding: 10px 40px 10px 10px;
+    box-sizing: border-box;
+}
+
+/* Position the button absolutely over the right side of the input */
+
+.passwordField button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    border-radius: 18px;
     cursor: pointer;
-    accent-color: var(--color-primary);
+    padding: 0;
+    color: var(--color-text);
+}
+
+.passwordField button:hover {
+    box-shadow: 0 0 10px 5px rgba(138, 124, 246, 0.5);
+    background-color: rgba(138, 124, 246, 0.5);
+}
+
+.passwordField button:active {
+    box-shadow: 0 0 10px 5px rgba(138, 124, 246, 0.5);
+    background-color: rgba(138, 124, 246, 0.5);
+    transform: translateY(-10px) scale(1.25);
 }
