@@ -1,0 +1,63 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 1rem;
+    justify-content: space-evenly;
+}
+
+.badge {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+}
+
+.badge_ROOT {
+    background: rgba(250, 90, 255, 0.14);
+    color: #ffa9f2;
+    border-color: rgba(255, 90, 222, 0.3);
+}
+
+.badge_ADMIN {
+    background: rgba(123, 90, 255, .14);
+    color: rgb(189, 169, 255);
+    border-color: rgba(123, 90, 255, 0.5);
+}
+
+.badge_USER {
+    background: rgba(70, 190, 255, .12);
+    color: #7fd5ff;
+    border-color: rgba(70, 190, 255, .3);
+}
+
+.badge_GUEST {
+    background: rgba(86, 149, 184, 0.12);
+    color: #6b7493;
+    border-color: rgba(81, 104, 199, 0.22);
+}
+
+.badge_ROOT:hover {
+    background: rgba(250, 90, 255, 0.3);
+    border-color: rgba(255, 90, 222, 0.5);
+    box-shadow: 0px 0px 10px 3px rgba(255, 90, 222, 1);
+}
+
+.badge_ADMIN:hover {
+    background: rgba(123, 90, 255, .5);
+    border-color: rgba(123, 90, 255, 0.7);
+    box-shadow: 0px 0px 10px 3px rgba(123, 90, 255, 1);
+}
+
+.badge_USER:hover {
+    background: rgba(70, 190, 255, .3);
+    border-color: rgba(70, 190, 255, .5);
+    box-shadow: 0px 0px 10px 3px rgba(70, 190, 255, 1);
+}
+
+.badge_GUEST:hover {
+    background: rgba(86, 149, 184, 0.3);
+    border-color: rgba(81, 104, 199, 0.5);
+    box-shadow: 0px 0px 10px 3px rgba(81, 104, 199, 1);
+}

@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { useNavigate } from '@tanstack/react-router'
 import { login } from '@/api/login'
 import { Eye, EyeOff } from "lucide-react";
+import DemoUsers from '@/components/ui/DemoUsers/DemoUsers'
 
 
 function LoginForm() {
@@ -16,8 +17,13 @@ function LoginForm() {
     const [password, setPassword] = useState('')
     const [error, setError] = useState<string | null>(null)
     const [loading, setLoading] = useState(false)
-          const [showPassword, setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
+    const handleDemoAccount = (email: string, password: string) => {
+        setEmail(email)
+        setPassword(password)
+        setError(null)
+    }
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault() // Evita que el navegador recargue la página
@@ -68,7 +74,7 @@ function LoginForm() {
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
                     >
-                        {showPassword ? <EyeOff size={20}/> : <Eye size={20}/>}
+                        {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                     </button>
                 </div>
 
@@ -79,6 +85,9 @@ function LoginForm() {
                     {loading ? 'Ingresando...' : 'Iniciar Sesión'}
                 </Button>
             </form>
+
+              <DemoUsers onSelect={handleDemoAccount} />
+
 
             {/*             <Footer> ¿No tenés cuenta? <Link to='/create-user'>Registrate</Link> </Footer>
  */}        </div>
