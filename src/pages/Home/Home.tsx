@@ -4,7 +4,7 @@ import Modal from '@/components/blocks/Modal/Modal'
 import styles from './Home.module.css'
 import type { User } from '@/api/types'
 import UsersTable from '@/components/ui/UsersTable/UsersTable'
-import backgroundVideo from "@/public/videos/dna-strand.mp4";
+import backgroundVideo from "@/assets/videos/dna-strand-calidad-baja.mp4";
 import UserCards from '@/components/ui/UserCards/UserCards'
 import UserDetails from '@/components/ui/UserDetails/UserDetails'
 import UserEditForm from '@/components/ui/UserEditForm/UserEditForm'

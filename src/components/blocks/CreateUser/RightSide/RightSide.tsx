@@ -6,20 +6,6 @@ function LoginRightSide() {
     return (
         <div className={styles.rightBackground}>
 
-            {/* <video
-                className={styles.backgroundVideo}
-                autoPlay
-                muted
-                loop
-                playsInline
-            >
-                <source src={backgroundVideo} type="video/mp4" />
-            </video> */}
-
-            {/* <div className={styles.content}>
-                <Logo />
-            </div> */}
-
             <Logo />
 
             <>
