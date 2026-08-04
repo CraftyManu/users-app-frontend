@@ -1,14 +1,21 @@
 import styles from './RightSide.module.css'
 import fontStyles from '@/styles/fontStyles.module.css'
 import Logo from '@/components/ui/Logo/Logo'
-import backgroundVideo from "@/assets/videos/dna-strand.mp4";
+import backgroundVideo from "@/public/videos/dna-strand.mp4";
+import { useState } from 'react'
 
 function LoginRightSide() {
+
+    const [loaded, setLoaded] = useState(false);
+
+
 
     return (
         <div className={styles.rightBackground}>
 
-            <video
+{/*             <img className={styles.backgroundImage} src="https://mimostejidosartesanales.wordpress.com/wp-content/uploads/2026/07/dna-background.png" />
+ */}
+            <video onCanPlay={() => setLoaded(true)}
                 className={styles.backgroundVideo}
                 autoPlay
                 muted
@@ -17,6 +24,10 @@ function LoginRightSide() {
             >
                 <source src={backgroundVideo} type="video/mp4" />
             </video>
+
+            {!loaded && (
+                <img className={styles.backgroundImage} src="https://mimostejidosartesanales.wordpress.com/wp-content/uploads/2026/07/dna-background.png" />
+            )}
 
             <div className={styles.content}>
                 <Logo />

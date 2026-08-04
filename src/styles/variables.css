@@ -4,11 +4,10 @@
     --color-background: #FFFEFF;        /* Slightly warm white */
     --color-background-alt: #FAF7FC;    /* Very light lavender */           
     --color-text: #2F2A45;
+    --color-text-light: #9b9b9b;
     --color-text-muted: #7B758C;
     --color-border: #E9E2F2;
     --color-border-70: hsla(268, 37%, 92%, 0.702);
-
-    --color-text-light: #9b9b9b;
     --color-accent: #7b7cff;
     --color-accent-light: #FDECF4;
 

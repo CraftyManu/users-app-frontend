@@ -63,11 +63,11 @@
     /*     background-color: #dc2626;
     color: white; */
     background-color: var(--color-text);
-    color: red;
+    color: var(--color-accent-light);
     font-size: larger;
     font-weight: 500;
     width: 100%;
-    padding: 0.5rem;
+    padding: 0.25rem;
 }
 
 .delete:hover {
@@ -79,4 +79,5 @@
     0 0 20px #fff,      /* Soft outer glow */
     0 0 50px #fff,      /* Broad environmental halo */
     0 0 70px #fff;
+    transform: scale(1.2);
 }

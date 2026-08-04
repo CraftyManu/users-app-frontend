@@ -72,10 +72,10 @@
 
 @media (max-height: 700px) {
     .label {
-        margin-bottom: .50rem;
+        margin-bottom: .40rem;
     }
 
     .input {
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.25rem;
     }
 }

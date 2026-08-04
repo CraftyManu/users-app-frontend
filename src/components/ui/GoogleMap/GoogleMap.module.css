@@ -35,9 +35,10 @@
     background: #111;
 }
 
-.noLocation {
+.noLocation, .loading {
     /* display: none; */
     margin-top: 2rem;
     color: var(--color-text-muted);
     text-align: center;
 }
+

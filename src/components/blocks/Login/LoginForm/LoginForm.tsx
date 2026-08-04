@@ -5,7 +5,6 @@ import Subtitle from '@/components/ui/Subtitle/Subtitle'
 import { useState } from 'react'
 import { useNavigate } from '@tanstack/react-router'
 import { login } from '@/api/login'
-/* import { saveAuth } from '@/api/authStorage' */
 
 function LoginForm() {
     const navigate = useNavigate()

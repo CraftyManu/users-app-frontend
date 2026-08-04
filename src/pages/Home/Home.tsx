@@ -1,36 +1,36 @@
-import { useEffect, useState } from 'react'
 import { useNavigate } from '@tanstack/react-router'
 import Button from '@/components/ui/Button/Button'
 import Modal from '@/components/blocks/Modal/Modal'
 import styles from './Home.module.css'
-import { getUsers } from '@/api/getUsers'
-import { updateUser } from '@/api/updateUser'
-import { deleteUser } from '@/api/deleteUser'
 import type { User } from '@/api/types'
-import GenderIcon from '@/components/ui/GenderIcon/GenderIcon'
-import Avatar from '@/components/ui/Avatar/Avatar'
-import backgroundVideo from "@/assets/videos/dna-strand.mp4";
-import GoogleMap from '@/components/ui/GoogleMap/GoogleMap'
-
-const ROLES = ['ROOT', 'ADMIN', 'USER', 'GUEST']
-const GENEROS = ['Femenino', 'Masculino', 'Otro']
-type SortKey = 'nombre' | 'email' | 'genero' | 'localidad' | 'role'
-type SortDirection = 'asc' | 'desc'
+import UsersTable from '@/components/ui/UsersTable/UsersTable'
+import backgroundVideo from "@/public/videos/dna-strand.mp4";
+import UserCards from '@/components/ui/UserCards/UserCards'
+import UserDetails from '@/components/ui/UserDetails/UserDetails'
+import UserEditForm from '@/components/ui/UserEditForm/UserEditForm'
+import { useUsers } from '@/hooks/useUsers'
+import { useUserModal } from '@/hooks/useUserModal'
+import { useEffect } from 'react'
 
 function Home() {
     const navigate = useNavigate()
 
-    const [users, setUsers] = useState<User[]>([])
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState<string | null>(null)
-    const [sortConfig, setSortConfig] = useState<{ key: SortKey; direction: SortDirection }>({
-        key: 'nombre',
-        direction: 'asc',
-    })
+    const {
+        users,
+        loading,
+        error,
+
+        sortedUsers,
+        sortConfig,
+
+        handleSort,
+        handleUserUpdated,
+
+        deleteUserById,
+    } = useUsers()
 
     // Usuario seleccionado para ver o editar en el modal
-    const [modalUser, setModalUser] = useState<User | null>(null)
-    const [modalMode, setModalMode] = useState<'view' | 'edit' | null>(null)
+
 
 
     // Get user role from localStorage
@@ -40,22 +40,7 @@ function Home() {
         // Protección mínima de ruta: sin token no tiene sentido estar acá
         if (!localStorage.getItem('token')) {
             navigate({ to: '/login' })
-            return
         }
-        // Pedimos los usuarios a la API al montar el componente
-        async function loadUsers() {
-            try {
-                const data = await getUsers()
-                setUsers(data)
-            } catch (error: any) {
-                console.log('error in function loadUsers')
-                setError(error.message)
-            } finally {
-                setLoading(false)
-            }
-        }
-
-        loadUsers()
     }, [navigate])
 
     function handleLogout() {
@@ -65,43 +50,32 @@ function Home() {
         navigate({ to: '/login' })
     }
 
-    function openView(user: User) {
-        setModalUser(user)
-        setModalMode('view')
-    }
+    const {
+        modalUser,
+        modalMode,
 
-    function openEdit(user: User) {
-        setModalUser(user)
-        setModalMode('edit')
-    }
-
-    function closeModal() {
-        setModalMode(null)
-        setModalUser(null)
-    }
-
-    function handleUserUpdated(updated: User) {
-        setUsers((prev) => prev.map((u) => (u._id === updated._id ? updated : u)))
-        closeModal()
-    }
+        openView,
+        openEdit,
+        closeModal,
+    } = useUserModal()
 
     // Handle user deletion
     async function handleDeleteUser(userId: string) {
-        // Confirmación antes de eliminar
-        if (!confirm('¿Estás seguro de que deseas eliminar este usuario? Esta acción no se puede deshacer.')) {
+        if (
+            !confirm(
+                '¿Estás seguro de que deseas eliminar este usuario? Esta acción no se puede deshacer.'
+            )
+        ) {
             return
         }
 
         try {
-            await deleteUser(userId)
-            // Remover el usuario de la lista
-            setUsers((prev) => prev.filter((u) => u._id !== userId))
-            // Cerrar el modal si está abierto
+            await deleteUserById(userId)
+
             closeModal()
-            // Mostrar mensaje de éxito (opcional)
+
             alert('Usuario eliminado correctamente')
         } catch (error: any) {
-            console.error('Error al eliminar usuario:', error)
             alert(`Error al eliminar usuario: ${error.message}`)
         }
     }
@@ -125,25 +99,9 @@ function Home() {
         return false
     }
 
-    function handleSort(key: SortKey) {
-        setSortConfig((prev) => {
-            if (prev.key === key) {
-                return {
-                    key,
-                    direction: prev.direction === 'asc' ? 'desc' : 'asc',
-                }
-            }
 
-            return { key, direction: 'asc' }
-        })
-    }
 
-    const sortedUsers = [...users].sort((a, b) => {
-        const aValue = String(a[sortConfig.key] ?? '').toLocaleLowerCase()
-        const bValue = String(b[sortConfig.key] ?? '').toLocaleLowerCase()
-        const comparison = aValue.localeCompare(bValue)
-        return sortConfig.direction === 'asc' ? comparison : comparison * -1
-    })
+
 
     return (
         <main className={styles.container}>
@@ -157,6 +115,7 @@ function Home() {
             >
                 <source src={backgroundVideo} type="video/mp4" />
             </video>
+
 
             <div className={styles.header}>
                 <h1 className={styles.title}>Usuarios</h1>
@@ -176,87 +135,25 @@ function Home() {
             )}
 
             {!loading && !error && users.length > 0 && (
-                <div className={styles.tableWrapper}>
-                    <table className={styles.table}>
-                        <thead>
-                            <tr>
-                                <th className={styles.th}>Usuario
-                                    <button type="button" className={styles.sortButton} onClick={() => handleSort('nombre')}>
-                                        {sortConfig.key === 'nombre' ? (sortConfig.direction === 'asc' ? '▲' : '▼') : '↕'}
-                                    </button>
-                                </th>
-                                <th className={styles.th}>Email
-                                    <button type="button" className={styles.sortButton} onClick={() => handleSort('email')}>
-                                        {sortConfig.key === 'email' ? (sortConfig.direction === 'asc' ? '▲' : '▼') : '↕'}
-                                    </button>
-                                </th>
-                                <th className={styles.th}>Género
-                                    <button type="button" className={styles.sortButton} onClick={() => handleSort('genero')}>
-                                        {sortConfig.key === 'genero' ? (sortConfig.direction === 'asc' ? '▲' : '▼') : '↕'}
-                                    </button>
-                                </th>
-                                <th className={styles.th}>Localidad
-                                    <button type="button" className={styles.sortButton} onClick={() => handleSort('localidad')}>
-                                        {sortConfig.key === 'localidad' ? (sortConfig.direction === 'asc' ? '▲' : '▼') : '↕'}
-                                    </button>
-                                </th>
-                                <th className={styles.th}>Rol
-                                    <button type="button" className={styles.sortButton} onClick={() => handleSort('role')}>
-                                        {sortConfig.key === 'role' ? (sortConfig.direction === 'asc' ? '▲' : '▼') : '↕'}
-                                    </button>
-                                </th>
-                                <th className={styles.th}>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {sortedUsers.map((user) => (
-                                <tr key={user._id} className={styles.tr}>
-                                    <td className={styles.td}>
-                                        <div className={styles.userCell}>
-                                            {/* La API no devuelve imagen: generamos un avatar con el nombre */}
-                                            {/* <img
-                                                className={styles.avatar}
-                                                src={`https://ui-avatars.com/api/?name=${user.nombre}+${user.apellido}&background=random`}
-                                                alt={`${user.nombre} ${user.apellido}`}
-                                            /> */}
-                                            <Avatar
-                                                avatarURL={user.avatarURL}
-                                                userUrl={user.user_url}
-                                                genero={user.genero}
-                                                nombre={user.nombre}
-                                                apellido={user.apellido}
-                                            />
-                                            <span>{user.nombre} {user.apellido}</span>
-                                        </div>
-                                    </td>
-                                    <td className={styles.td}>{user.email}</td>
-                                    {/* <td className={styles.td}>{user.genero}</td> */}
-                                    <td className={`${styles.td} ${styles.genderCell}`}>
-                                        <GenderIcon gender={user.genero} />
-                                    </td>
-                                    <td className={styles.td}>{user.localidad}</td>
-                                    <td className={styles.td}>
-                                        <span className={`${styles.badge} ${styles[`badge__${user.role.toLowerCase()}`] ?? ''}`}>
-                                            {user.role}
-                                        </span>
-                                    </td>
-                                    <td className={styles.td}>
-                                        <div className={styles.actions}>
-                                            <button className={styles.actionBtn} onClick={() => openView(user)}>Ver</button>
-                                            <button
-                                                className={`${styles.actionBtn} ${styles.actionBtnEdit}`}
-                                                onClick={() => openEdit(user)}
-                                            >
-                                                Editar
-                                            </button>
+                <UsersTable
+                    users={sortedUsers}
+                    sortConfig={sortConfig}
+                    onSort={handleSort}
+                    onView={openView}
+                    onEdit={openEdit}
+                    onDelete={handleDeleteUser}
+                />
+            )}
 
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+            {!loading && !error && users.length > 0 && (
+
+                <UserCards
+                    users={sortedUsers}
+                    onView={openView}
+                    onEdit={openEdit}
+                    onDelete={handleDeleteUser}
+                />
+
             )}
 
             <Modal
@@ -264,10 +161,18 @@ function Home() {
                 onClose={closeModal}
                 title={modalMode === 'view' ? 'Detalle de usuario' : 'Editar usuario'}
             >
-                {modalMode === 'view' && modalUser && <UserDetails user={modalUser} />}
+                {modalMode === 'view' && modalUser &&
+                    <UserDetails
+                        user={modalUser}
+                    />}
                 {modalMode === 'edit' && modalUser && (
-                    <UserEditForm user={modalUser} onCancel={closeModal} onSaved={handleUserUpdated} onDelete={handleDeleteUser}
-                        canDelete={canDeleteUser(modalUser)} />
+                    <UserEditForm
+                        user={modalUser}
+                        onCancel={closeModal}
+                        onSaved={handleUserUpdated}
+                        onDelete={handleDeleteUser}
+                        canDelete={canDeleteUser(modalUser)}
+                    />
                 )}
             </Modal>
 
@@ -278,321 +183,6 @@ function Home() {
 // ------------------------------------------------------------
 // Vista "Ver": detalle de usuario en modo solo lectura
 // ------------------------------------------------------------
-function UserDetails({
-    user, /* onDelete, canDelete */
-}: {
-    user: User
-    /*     onDelete: (userId: string) => Promise<void>
-        canDelete: boolean */
-}) {
-    const fields: [string, string][] = [
-        ['Nombre', `${user.nombre} ${user.apellido}`],
-        ['Email', user.email],
-        ['Rol', user.role],
-        ['Género', user.genero],
-        ['Edad', String(user.edad)],
-        ['Fecha de nacimiento', user.fechaNacimiento?.slice(0, 10) ?? ''],
-        ['Teléfono', user.telefono],
-        ['Dirección', user.direccion],
-        ['Localidad', user.localidad],
-        ['Provincia', user.provincia],
-        ['País', user.pais],
-        ['Código postal', user.codigoPostal],
-        ['UserName', user.userName],
-        ['Avatar_URL', user.avatarURL ?? ''],
-    ]
 
-    return (
-        <>
-            <dl className={styles.viewGrid}>
-                {fields.map(([label, value]) => (
-                    <div className={styles.viewRow} key={label}>
-                        <dt className={styles.viewLabel}>{label}</dt>
-                        <dd className={styles.viewValue}>{value || '-'}</dd>
-                    </div>
-                ))}
-            </dl>
-
-            <GoogleMap user={user} />
-        </>
-    )
-}
-
-// ------------------------------------------------------------
-// Vista "Editar": formulario que guarda cambios con updateUser
-// El email no se incluye: el backend no permite modificarlo
-// ------------------------------------------------------------
-function UserEditForm({
-    user,
-    onCancel,
-    onSaved,
-    onDelete,
-    canDelete
-
-}: {
-    user: User
-    onCancel: () => void
-    onSaved: (user: User) => void
-    onDelete: (userId: string) => Promise<void>
-    canDelete: boolean
-}) {
-    const [nombre, setNombre] = useState(user.nombre)
-    const [apellido, setApellido] = useState(user.apellido)
-    const [genero, setGenero] = useState(user.genero)
-    /* const [edad, setEdad] = useState(String(user.edad)) */
-    const [fechaNacimiento, setFechaNacimiento] = useState(user.fechaNacimiento?.slice(0, 10) ?? '')
-    const [telefono, setTelefono] = useState(user.telefono)
-    const [direccion, setDireccion] = useState(user.direccion)
-    const [localidad, setLocalidad] = useState(user.localidad)
-    const [provincia, setProvincia] = useState(user.provincia)
-    const [pais, setPais] = useState(user.pais)
-    const [codigoPostal, setCodigoPostal] = useState(user.codigoPostal)
-    const [role, setRole] = useState(user.role)
-    const [userName, setUserName] = useState(user.userName)
-    const [avatarURL, setAvatarURL] = useState(user.avatarURL ?? '')
-
-    const [error, setError] = useState<string | null>(null)
-    const [loading, setLoading] = useState(false)
-
-    async function handleSubmit(e: React.FormEvent) {
-        e.preventDefault()
-        setError(null)
-        setLoading(true)
-        try {
-
-            const payload: any = {
-                nombre,
-                apellido,
-                genero,
-                fechaNacimiento,
-                telefono,
-                direccion,
-                localidad,
-                provincia,
-                pais,
-                codigoPostal,
-                userName,
-                avatarURL,
-            }
-
-            if (role !== user.role) {
-                payload.role = role
-            }
-
-            const updated = await updateUser(user._id, payload)
-            onSaved(updated)
-        } catch (error: any) {
-            setError(error.message)
-        } finally {
-            setLoading(false)
-        }
-    }
-
-    return (
-        <form className={styles.editForm} onSubmit={handleSubmit}>
-            <div className={styles.formRow}>
-                <div>
-                    <label className={styles.label} htmlFor="edit-nombre">Nombre</label>
-                    <input
-                        className={styles.input}
-                        id="edit-nombre"
-                        type="text"
-                        value={nombre}
-                        onChange={(e) => setNombre(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label className={styles.label} htmlFor="edit-apellido">Apellido</label>
-                    <input
-                        className={styles.input}
-                        id="edit-apellido"
-                        type="text"
-                        value={apellido}
-                        onChange={(e) => setApellido(e.target.value)}
-                        required
-                    />
-                </div>
-            </div>
-
-            <div className={styles.formRow}>
-                <div>
-                    <label className={styles.label} htmlFor="edit-genero">Género</label>
-
-                    <select
-                        className={styles.select}
-                        id="edit-genero"
-                        value={genero}
-                        onChange={(e) => setGenero(e.target.value)}
-                    >
-                        {GENEROS.map((r) => (
-                            <option key={r} value={r}>{r}</option>
-                        ))}
-                    </select>
-
-                    {/* <label className={styles.label} htmlFor="edit-genero">Género</label>
-                    <input
-                        className={styles.input}
-                        id="edit-genero"
-                        type="text"
-                        value={genero}
-                        onChange={(e) => setGenero(e.target.value)}
-                        required
-                    /> */}
-                </div>
-
-
-                {/* <div>
-                    <label className={styles.label} htmlFor="edit-edad">Edad</label>
-                    <input
-                        className={styles.input}
-                        id="edit-edad"
-                        type="number"
-                        min={1}
-                        max={120}
-                        value={edad}
-                        onChange={(e) => setEdad(e.target.value)}
-                        required
-                    />
-                </div> */}
-            </div>
-
-            <div className={styles.formRow}>
-                <div>
-                    <label className={styles.label} htmlFor="edit-fechaNacimiento">Fecha de nacimiento</label>
-                    <input
-                        className={styles.input}
-                        id="edit-fechaNacimiento"
-                        type="date"
-                        value={fechaNacimiento}
-                        onChange={(e) => setFechaNacimiento(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label className={styles.label} htmlFor="edit-telefono">Teléfono</label>
-                    <input
-                        className={styles.input}
-                        id="edit-telefono"
-                        type="text"
-                        value={telefono}
-                        onChange={(e) => setTelefono(e.target.value)}
-                        required
-                    />
-                </div>
-            </div>
-
-            <label className={styles.label} htmlFor="edit-direccion">Dirección</label>
-            <input
-                className={styles.input}
-                id="edit-direccion"
-                type="text"
-                value={direccion}
-                onChange={(e) => setDireccion(e.target.value)}
-                required
-            />
-
-            <div className={styles.formRow}>
-                <div>
-                    <label className={styles.label} htmlFor="edit-localidad">Localidad</label>
-                    <input
-                        className={styles.input}
-                        id="edit-localidad"
-                        type="text"
-                        value={localidad}
-                        onChange={(e) => setLocalidad(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label className={styles.label} htmlFor="edit-provincia">Provincia</label>
-                    <input
-                        className={styles.input}
-                        id="edit-provincia"
-                        type="text"
-                        value={provincia}
-                        onChange={(e) => setProvincia(e.target.value)}
-                        required
-                    />
-                </div>
-            </div>
-
-            <div className={styles.formRow}>
-                <div>
-                    <label className={styles.label} htmlFor="edit-pais">País</label>
-                    <input
-                        className={styles.input}
-                        id="edit-pais"
-                        type="text"
-                        value={pais}
-                        onChange={(e) => setPais(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label className={styles.label} htmlFor="edit-codigoPostal">Código postal</label>
-                    <input
-                        className={styles.input}
-                        id="edit-codigoPostal"
-                        type="text"
-                        value={codigoPostal}
-                        onChange={(e) => setCodigoPostal(e.target.value)}
-                        required
-                    />
-                </div>
-
-                <div>
-                    <label className={styles.label} htmlFor="edit-userName">userName</label>
-                    <input
-                        className={styles.input}
-                        id="edit-userName"
-                        type="text"
-                        value={userName}
-                        onChange={(e) => setUserName(e.target.value)}
-                    />
-                </div>
-
-                <div>
-                    <label className={styles.label} htmlFor="edit-avatarURL">Avatar_URL</label>
-                    <input
-                        className={styles.input}
-                        id="edit-avatarURL"
-                        type="text"
-                        value={avatarURL}
-                        onChange={(e) => setAvatarURL(e.target.value)}
-                    />
-                </div>
-            </div>
-
-            <label className={styles.label} htmlFor="edit-role">Rol</label>
-            <select
-                className={styles.select}
-                id="edit-role"
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-            >
-                {ROLES.map((r) => (
-                    <option key={r} value={r}>{r}</option>
-                ))}
-            </select>
-
-            {error && <p className={styles.error}>{error}</p>}
-
-            <div className={styles.modalActions}>
-                {canDelete && (
-                    <span title="Eliminar Usuario">
-                    <Button variant="delete" type="button"
-                        onClick={() => onDelete(user._id)}>❌
-                    </Button>
-                    </span>
-                )}
-                <Button variant="secondary" type="button" onClick={onCancel}>Cancelar</Button>
-                <Button variant="primary" type="submit" disabled={loading}>
-                    {loading ? 'Guardando...' : 'Guardar cambios'}
-                </Button>
-            </div>
-        </form>
-    )
-}
 
 export default Home
