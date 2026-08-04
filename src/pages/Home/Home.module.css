@@ -101,12 +101,12 @@
 }
 
 .error {
-    color: #ff6b6b;
+    color: var(--color-error);
     font-size: 15px;
 }
 
 /* ============================================================
-                                  TABLE
+                                TABLE
   ============================================================ */
 
 .tableWrapper {
@@ -123,7 +123,8 @@
     width: 100%;
     border-collapse: collapse;
     background-color: #111;
-    min-width: 700px; /* aparece scrollbar horizontal si es menor a min-width */
+    min-width: 700px;
+    /* aparece scrollbar horizontal si es menor a min-width */
 }
 
 /* .table thead {
@@ -149,22 +150,23 @@
     letter-spacing: .1em;
     padding: 18px 22px;
     text-align: center;
-    background-attachment: fixed;    /* ensures background stays fixed when scrolling */
+    background-attachment: fixed;
+    /* ensures background stays fixed when scrolling */
 }
 
 /* Round corners for the first row of th elements */
-    .table thead tr:first-child th:first-child {
-        border-top-left-radius: 18px;
-    }
+.table thead tr:first-child th:first-child {
+    border-top-left-radius: 18px;
+}
 
-    .table thead tr:first-child th:last-child {
-        border-top-right-radius: 18px;
-    }
+.table thead tr:first-child th:last-child {
+    border-top-right-radius: 18px;
+}
 
-    .table:first-child {
-        border-top-right-radius: 18px;
-        border-top-left-radius: 18px;
-    }
+.table:first-child {
+    border-top-right-radius: 18px;
+    border-top-left-radius: 18px;
+}
 
 .sortButton {
     border: 0;
@@ -441,13 +443,24 @@
     }
 }
 
-@media (min-width: 700px) and (max-width: 1000px) { /* Tablet */
-    .columnEmail, .columnGenero {
+@media (min-width: 700px) and (max-width: 1000px) {
+
+    /* Tablet */
+    .columnEmail,
+    .columnGenero {
         display: none;
     }
 }
 
-@media (max-width: 700px)  { /* Mobile */
+@media (max-width: 400px) {
 
+    /* Mobile */
+    .agregar {
+        display: none;
+    }
+
+    .plus {
+        font-size: 2rem;
+    }
 
 }

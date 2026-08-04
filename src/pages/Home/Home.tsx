@@ -120,7 +120,7 @@ function Home() {
             <div className={styles.header}>
                 <h1 className={styles.title}>Usuarios</h1>
                 <div className={styles.headerActions}>
-                    <Button variant="terciary" onClick={() => navigate({ to: '/create-user' })}>+ Agregar</Button>
+                    <Button variant="terciary" onClick={() => navigate({ to: '/create-user' })}><span className={styles.plus}>+</span> <span className={styles.agregar}>Agregar</span></Button>
                     <Button variant="secondary" onClick={handleLogout}>Cerrar sesión</Button>
                 </div>
             </div>

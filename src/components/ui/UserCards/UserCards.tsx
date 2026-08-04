@@ -43,6 +43,17 @@ function UserCards({
 
                             <span>{user.email}</span>
                         </div>
+
+                        <div>
+                            <span className={styles.gender}>
+                                <GenderIcon
+                                    gender={user.genero as
+                                        | 'Masculino'
+                                        | 'Femenino'}
+                                />
+                            </span>
+                        </div>
+
                     </div>
 
                     <div className={styles.userDetails}>
@@ -128,6 +139,12 @@ function UserCards({
                         </div>
 
                         <div className={styles.row}>
+                            <label>Fecha Nacimiento:</label>
+                            <span>{user.fechaNacimiento?.split('T')[0]}</span>
+                            {/*<span>{new Date(user.fechaNacimiento).toLocaleDateString('es-AR')}</span>
+ */}                        </div>
+
+                        <div className={styles.row}>
                             <label>Edad:</label>
                             <span>{user.edad}</span>
                         </div>
@@ -142,7 +159,7 @@ function UserCards({
                             <span className={`${styles.badge} ${styles[`badge__${user.role.toLowerCase()}`] ?? ''}`}>
                                 {user.role}
                             </span>
-                            <div>
+                            {/* <div>
                                 <span className={styles.gender}>
                                     <GenderIcon
                                         gender={user.genero as
@@ -150,9 +167,7 @@ function UserCards({
                                             | 'Femenino'}
                                     />
                                 </span>
-                            </div>
-
-
+                            </div> */}
                         </div>
                     </div>
 

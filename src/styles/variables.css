@@ -1,8 +1,11 @@
 :root {
-    --color-primary: #8B7CF6;           /* Soft violet */
+    --color-primary: #8B7CF6;
+    /* Soft violet */
     --color-primary-hover: #7564F0;
-    --color-background: #FFFEFF;        /* Slightly warm white */
-    --color-background-alt: #FAF7FC;    /* Very light lavender */           
+    --color-background: #FFFEFF;
+    /* Slightly warm white */
+    --color-background-alt: #FAF7FC;
+    /* Very light lavender */
     --color-text: #2F2A45;
     --color-text-light: #9b9b9b;
     --color-text-muted: #7B758C;
@@ -10,6 +13,7 @@
     --color-border-70: hsla(268, 37%, 92%, 0.702);
     --color-accent: #7b7cff;
     --color-accent-light: #FDECF4;
+    --color-error: #ff6b6b;
 
     --spacing-xs: 0.25rem;
     --spacing-sm: 0.5rem;
