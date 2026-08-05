@@ -33,6 +33,7 @@ function LoginForm() {
             const data = await login(email, password)
             localStorage.setItem('token', data.token)
             localStorage.setItem('role', data.role)
+            localStorage.setItem('email', email)
             navigate({ to: '/' })
         } catch (error: any) {
             setError(error.message)
