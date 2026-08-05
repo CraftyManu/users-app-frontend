@@ -63,7 +63,6 @@ function LoginForm() {
                     <input
                         className={styles.input}
                         id='password'
-                        /* type="password" */
                         type={showPassword ? "text" : "password"}
                         placeholder='Contraseña'
                         value={password}

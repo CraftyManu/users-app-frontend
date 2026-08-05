@@ -106,7 +106,7 @@
 }
 
 .td {
-    padding: 14px 16px;
+    padding: 14px 10px;
     font-size: 16px;
     color: #ccc;
     white-space: nowrap;
@@ -366,18 +366,21 @@
     }
 }
 
-@media (min-width: 1000px) and (max-width: 1050px) {
+@media (min-width: 950px) and (max-width: 1000px) {
     .columnEdad,
     .columnLocalidad {
         display: none;
     }
 }
 
-@media (min-width: 900px) and (max-width: 1000px) {
+@media (min-width: 900px) and (max-width: 950px) {
     .columnEdad,
-    .columnEmail,
+    .userInfo,
     .columnLocalidad {
         display: none;
+    }
+    .userCell {
+        max-width: fit-content;
     }
 }
 

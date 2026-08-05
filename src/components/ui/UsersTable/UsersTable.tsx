@@ -54,7 +54,7 @@ function UsersTable({
             <table className={styles.table}>
                 <thead>
                     <tr>
-                        <th className={styles.th}>
+                        <th className={`${styles.th} ${styles.columnUsuario}`} >
                             Usuario
                             {renderSortButton('nombre')}
                         </th>
@@ -93,7 +93,7 @@ function UsersTable({
                 <tbody>
                     {users.map((user) => (
                         <tr key={user._id} className={styles.tr}>
-                            <td className={styles.td}>
+                            <td className={`${styles.td} ${styles.columnUsuario}`}>
                                 <div className={styles.userCell}>
                                     <Avatar user={user} />
 

@@ -14,9 +14,9 @@ export const chartColors = {
 
     // Role colors (matching your badges)
     root: "#ff5ade",
-    admin: "#7b5aff",
+    admin: "#995aff",
     user: "#46beff",
-    guest: "#5168c7",
+    guest: "#3a52af",
 };
 
 export const roleColors = {

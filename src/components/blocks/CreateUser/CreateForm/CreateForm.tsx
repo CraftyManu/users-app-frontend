@@ -3,11 +3,12 @@ import styles from './CreateForm.module.css'
 import Button from '@/components/ui/Button/Button'
 import Title from '@/components/ui/Title/Title'
 import Subtitle from '@/components/ui/Subtitle/Subtitle'
-import Footer from '@/components/ui/Footer/Footer' 
+import Footer from '@/components/ui/Footer/Footer'
 import { useEffect, useState } from 'react'
 import { useNavigate } from '@tanstack/react-router'
 import { createUser } from '@/api/createUser'
 import { getAuthToken } from '@/api/authStorage'
+import { Eye, EyeOff } from "lucide-react";
 
 function CreateForm() {
     const navigate = useNavigate()
@@ -19,6 +20,8 @@ function CreateForm() {
     const [password, setPassword] = useState('')
     const [error, setError] = useState<string | null>(null)
     const [loading, setLoading] = useState(false)
+    const [showPassword, setShowPassword] = useState(false);
+
 
     useEffect(() => {
         // Esta página es solo para admins logueados: sin token, no entra
@@ -80,7 +83,9 @@ function CreateForm() {
                 required
             />
 
-            <label className={styles.label} htmlFor="password">Contraseña</label>
+            {/*             <label className={styles.label} htmlFor="password">
+                Contraseña
+            </label>
             <input
                 className={styles.input}
                 id="password"
@@ -90,7 +95,25 @@ function CreateForm() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 minLength={6}
-            />
+            /> */}
+            <div className={styles.passwordField}>
+                <label className={styles.label} htmlFor="password">Contraseña</label>
+                <input
+                    className={styles.input}
+                    id='password'
+                    type={showPassword ? "text" : "password"}
+                    placeholder='Contraseña'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
+                <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                >
+                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                </button>
+            </div>
 
             {/* Mensaje de error que viene del backend */}
             {error && <p className={styles.error}>{error}</p>}
