@@ -124,7 +124,6 @@ function Home() {
 
             <Dashboard users={sortedUsers} />
 
-
             {/* Estados de la petición: cargando → error → vacío → tabla */}
             {loading && <p className={styles.message}>Cargando usuarios...</p>}
 
