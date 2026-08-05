@@ -10,6 +10,8 @@ interface UserCardsProps {
     onView: (user: User) => void
     onEdit: (user: User) => void
     onDelete: (userId: string) => void
+    canDelete: (user: User) => boolean
+    showDeleteButton: boolean
 }
 
 function UserCards({
@@ -17,6 +19,8 @@ function UserCards({
     onView,
     onEdit,
     onDelete,
+    canDelete,
+    showDeleteButton,
 }: UserCardsProps) {
     if (users.length === 0) {
         return (
@@ -57,72 +61,6 @@ function UserCards({
                     </div>
 
                     <div className={styles.userDetails}>
-                        {/* <div>
-                            <label>Username</label>
-                            <span>{user.userName}</span>
-                        </div>
-
-                        <div>
-                            <label>Role</label>
-                            <span>{user.role}</span>
-                        </div>
-
-                        <div>
-                            <label>Gender</label>
-
-                            <span className={styles.gender}>
-                                <GenderIcon
-                                    gender={user.genero as
-                                        | 'Masculino'
-                                        | 'Femenino'}
-                                />
-                            </span>
-                        </div>
-
-                        <div>
-                            <label>Age</label>
-                            <span>{user.edad}</span>
-                        </div>
-
-                        <div>
-                            <label>Phone</label>
-                            <span>{user.telefono}</span>
-                        </div>
-
-                        <div>
-                            <label>Country</label>
-                            <span>{user.pais}</span>
-                        </div>
-
-                        <div>
-                            <label>Province</label>
-                            <span>{user.provincia}</span>
-                        </div>
-
-                        <div>
-                            <label>City</label>
-                            <span>{user.localidad}</span>
-                        </div>
-
-                        <div>
-                            <label>Address</label>
-                            <span>{user.direccion}</span>
-                        </div>
-
-                        <div>
-                            <label>Postal Code</label>
-                            <span>{user.codigoPostal}</span>
-                        </div> */}
-
-                        {/*                         <div className={styles.row}>
-                            <Mail size={16} />
-                            <span>{user.email}</span>
-                        </div> */}
-
-                        {/*                         <div className={styles.row}>
-                            <MapPin size={16} />
-                            <span>{user.localidad}, {user.provincia}, {user.pais}</span>
-                        </div> */}
 
                         <div className={styles.row}>
                             <MapOnHover user={user} />
@@ -185,11 +123,17 @@ function UserCards({
                             <Pencil size={18} />
                         </button>
 
-                        <button className={`${styles.iconButton} ${styles.deleteButton}`} onClick={() => onDelete(user._id)}
-                            title="Eliminar usuario"
-                        >
-                            <Trash2 size={18} />
-                        </button>
+                        {showDeleteButton && (
+                            <button
+                                className={`${styles.iconButton} ${styles.deleteButton}`}
+                                onClick={() => onDelete(user._id)}
+                                title={canDelete(user) ? 'Eliminar usuario' : 'No puedes eliminar este usuario'}
+                                disabled={!canDelete(user)}
+                            /* title="Eliminar usuario" */
+                            >
+                                <Trash2 size={18} />
+                            </button>
+                        )}
                     </footer>
                 </article>
             ))}

@@ -23,6 +23,8 @@ interface UsersTableProps {
     onView: (user: User) => void
     onEdit: (user: User) => void
     onDelete: (userId: string) => void
+    canDelete: (user: User) => boolean
+    showDeleteButton: boolean
 }
 
 function UsersTable({
@@ -32,6 +34,8 @@ function UsersTable({
     onView,
     onEdit,
     onDelete,
+    canDelete,
+    showDeleteButton,
 }: UsersTableProps) {
     function renderSortButton(key: SortKey) {
         return (
@@ -149,13 +153,17 @@ function UsersTable({
                                         <Pencil size={18} />
                                     </button>
 
-                                    <button
-                                        className={`${styles.iconBtn} ${styles.deleteButton}`}
-                                        onClick={() => onDelete(user._id)}
-                                        title="Eliminar usuario"
-                                    >
-                                        <Trash2 size={18} />
+                                    {showDeleteButton && (
+                                        <button
+                                            className={`${styles.iconBtn} ${styles.deleteButton}`}
+                                            onClick={() => onDelete(user._id)}
+                                            title={canDelete(user) ? 'Eliminar usuario' : 'No puedes eliminar este usuario'}
+                                            disabled={!canDelete(user)}
+                                        >
+                                            <Trash2 size={18} />
                                     </button>
+                                    )}
+
                                 </div>
                             </td>
                         </tr>
