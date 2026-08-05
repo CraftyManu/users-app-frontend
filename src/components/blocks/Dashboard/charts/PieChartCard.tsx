@@ -14,24 +14,23 @@ interface PieChartCardProps<T extends string> {
 function PieChartCard<T extends string>({
     data,
     colors,
-    innerRadius = 0,
-    outerRadius = 90,
     paddingAngle = 2,
-}: PieChartCardProps<T>)  {
+    /* innerRadius = 40 */
+}: PieChartCardProps<T>) {
     return (
-        <ResponsiveContainer width="100%" height={300}>
-            <PieChart>
+        <ResponsiveContainer width="100%" height={200}>
+            <PieChart
+                /* margin={{ top: -35, bottom: 25, }} */
+            >
                 <Pie
                     data={data}
                     dataKey="value"
                     nameKey="label"
-                    innerRadius={innerRadius}
-                    outerRadius={outerRadius}
+                    /* innerRadius={innerRadius}  */
+                    innerRadius={chartConfig.pie.innerRadius}
+                    outerRadius={chartConfig.pie.outerRadius}
                     paddingAngle={paddingAngle}
-/*                     onClick={(data: any) => {
-                        onSliceClick?.(data?.name);
-                    }} */
-
+                    cy={chartConfig.pie.cy}
                 >
                     {data.map((entry) => (
                         <Cell
@@ -44,12 +43,13 @@ function PieChartCard<T extends string>({
                         />
                     ))}
 
-
                 </Pie>
 
                 <Tooltip />
 
-                <Legend {...chartConfig.legendProps} />
+                <Legend {...chartConfig.legendProps}
+                    
+                />
             </PieChart>
         </ResponsiveContainer>
     );

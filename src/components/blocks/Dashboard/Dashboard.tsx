@@ -2,12 +2,13 @@
 /* import { Users, Shield, Venus, Cake, } from "lucide-react";
 import DashboardCard from "./DashboardCard"; */
 import styles from "./Dashboard.module.css";
-import { useDashboardStats } from "./useDashboardStats"; 
+import { useDashboardStats } from "./useDashboardStats";
 import type { DashboardProps } from "./types";
 import ChartCard from "./ChartCard";
 import AgeChart from "./charts/AgeChart";
 import RoleChart from "./charts/RoleChart";
 import GenderChart from "./charts/GenderChart";
+import TotalUsers from "./charts/TotalUsers"
 
 function Dashboard({ users }: DashboardProps) {
 
@@ -19,7 +20,16 @@ function Dashboard({ users }: DashboardProps) {
             <div className={styles.charts}>
 
                 <ChartCard
-                    title="Users por Rol"
+                    title="Datos generales"
+                    subtitle="Estadísticas de usuarios"
+                >
+                    <TotalUsers
+                        stats={stats}
+                    />
+                </ChartCard>
+
+                <ChartCard
+                    title="Usuarios por Rol"
                     subtitle="Distribución por roles"
                 >
 
@@ -30,7 +40,7 @@ function Dashboard({ users }: DashboardProps) {
                 </ChartCard>
 
                 <ChartCard
-                    title="Users por Género"
+                    title="Usuarios por Género"
                     subtitle="Distribución por géneros"
                 >
 
@@ -41,8 +51,8 @@ function Dashboard({ users }: DashboardProps) {
                 </ChartCard>
 
                 <ChartCard
-                    title="Distribución por Edad"
-                    subtitle="Usuarios agrupados por edad"
+                    title="Usuarios por Edades"
+                    subtitle="Distribución por Edad"
                 >
 
                     <AgeChart

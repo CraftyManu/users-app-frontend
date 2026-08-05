@@ -13,6 +13,7 @@ function RoleChart({ data }: RoleChartProps) {
         <PieChartCard
             data={data}
             colors={roleColors}
+            innerRadius={chartConfig.pieInnerRadius}
             outerRadius={chartConfig.pieOuterRadius}
             paddingAngle={3}
         />

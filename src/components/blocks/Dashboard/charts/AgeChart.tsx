@@ -1,5 +1,6 @@
 import { ResponsiveContainer, BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip } from "recharts";
 import { chartColors } from "@/theme/chartColors";
+import { chartConfig } from "@/theme";
 
 interface AgeChartProps {
     data: {
@@ -14,11 +15,17 @@ function AgeChart({ data }: AgeChartProps) {
 
         <ResponsiveContainer
             width="100%"
-            height={300}
+            height={200}
         >
 
             <BarChart
                 data={data}
+                margin={{
+                    top: 0,
+                    left: -15,
+                    right: 15,
+                    bottom: 0,
+                }}
             >
 
                 <defs>
@@ -42,16 +49,25 @@ function AgeChart({ data }: AgeChartProps) {
                 </defs>
 
                 <CartesianGrid
-                    strokeDasharray="3 3"
-                    stroke="#7564F0"
+                    strokeDasharray={chartConfig.cartesianGrid.strokeDasharray}
+                    stroke={chartConfig.cartesianGrid.stroke}
+                    strokeOpacity={chartConfig.cartesianGrid.strokeOpacity}
                 />
 
                 <XAxis
                     dataKey="label"
+                    tick={{
+                        fill: "#9b9b9b",
+                        fontSize: 16,
+                    }}
                 />
 
                 <YAxis
                     allowDecimals={false}
+                    tick={{
+                        fill: "#9b9b9b",
+                        fontSize: 16,
+                    }}
                 />
 
                 <Tooltip />
@@ -59,7 +75,8 @@ function AgeChart({ data }: AgeChartProps) {
                 <Bar
                     dataKey="count"
                     fill="url(#ageGradient)"
-                    radius={[8, 8, 0, 0]}
+                    radius={[6, 6, 0, 0]}
+                /* barSize={25} */
                 />
                 {/* 
                 <Bar
