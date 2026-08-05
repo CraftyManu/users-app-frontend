@@ -366,7 +366,7 @@
     }
 }
 
-@media (min-width: 950px) and (max-width: 1000px) {
+@media (min-width: 950px) and (max-width: 1050px) {
     .columnEdad,
     .columnLocalidad {
         display: none;
@@ -374,8 +374,8 @@
 }
 
 @media (min-width: 900px) and (max-width: 950px) {
-    .columnEdad,
     .userInfo,
+    .columnEdad,
     .columnLocalidad {
         display: none;
     }

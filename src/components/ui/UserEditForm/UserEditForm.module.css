@@ -51,6 +51,10 @@
         0 0 0 4px rgba(123, 124, 255, .15);
 }
 
+input[type="date"] {
+    color-scheme: dark;
+}
+
 option {
     color: var(--color-text);
     background-color: var(--color-background);

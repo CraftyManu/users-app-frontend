@@ -5,7 +5,7 @@ export function getAvatar(user: User): string {
         return user.avatarURL
     }
 
-    if (user.user_url?.trim()) {
+    if (user.user_url?.trim() && user.avatarURL !== "") {
         return user.user_url
     }
 

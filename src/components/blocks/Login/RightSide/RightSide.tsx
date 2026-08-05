@@ -1,7 +1,7 @@
 import styles from './RightSide.module.css'
 import fontStyles from '@/styles/fontStyles.module.css'
 import Logo from '@/components/ui/Logo/Logo'
-import backgroundVideo from "@/assets/videos/dna-strand-calidad-full.mp4";
+import backgroundVideo from "@/assets/videos/dna-strand-calidad-baja.mp4";
 import { useState } from 'react'
 
 function LoginRightSide() {
