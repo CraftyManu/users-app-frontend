@@ -3,8 +3,8 @@
     z-index: 2;
 
     display: grid;
-    gap: 24px;
-    margin: 2rem 0;
+    gap: 0.5rem;
+    margin: 0.1rem 0;
 }
 
 .charts {
@@ -24,6 +24,12 @@
     grid-column: 1 / -1;
 } */
 
+.dashboardHeader {
+    display: flex;
+    justify-content: right;
+    align-items: right;
+}
+
 /* Medium screens: 2 columns */
 @media (max-width: 1200px) {
     .charts {
@@ -35,5 +41,9 @@
 @media (max-width: 600px) {
     .charts {
         grid-template-columns: 1fr;
+    }
+
+    .dashboard {
+        margin-top: 0.5rem;
     }
 }

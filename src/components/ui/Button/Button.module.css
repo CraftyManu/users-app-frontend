@@ -81,3 +81,15 @@
     0 0 70px #fff;
     transform: scale(1.2);
 }
+
+.smallIcon {
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-background-md);
+    border-radius: var(--radius-sm);
+}

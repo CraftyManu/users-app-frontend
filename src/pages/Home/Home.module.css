@@ -56,7 +56,7 @@
     justify-content: space-between;
     align-items: center;
 
-    margin-bottom: 40px;
+    margin-bottom: 1rem;
 }
 
 .header>button {
@@ -76,12 +76,24 @@
     margin-top: 0;
 }
 
-/* .title {
-    font-size: 24px;
-    font-weight: 700;
-    color: #ffffff;
+.dashboardArea {
     margin: 0;
-} */
+    position: relative;
+    z-index: 2;
+}
+
+.dashboardPlaceholder {
+    /* border: 1px solid var(--color-border-70);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-background-md);
+    padding: 1rem; */
+    justify-content: right;
+}
+
+.dashboardHeader {
+    display: flex;
+    justify-content: flex-end;
+}
 
 .title {
     font-size: 2rem;
@@ -433,6 +445,30 @@
     display: none;
 }
 
+.thisUser {
+    color: var(--color-text-light);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.thisUserEmail,
+.thisUserRol {
+    display: flex;
+    margin: 0.25rem 1rem;
+    align-items: center;
+}
+
+.thisUserEmail {
+    flex-wrap: nowrap;
+}
+
+.spanEmail {
+    color: #fff;
+    display: inline-block;
+}
+
 @media (max-width: 900px) {
     .desktopTable {
         display: none;
@@ -443,20 +479,24 @@
     }
 }
 
-/* @media (min-width: 800px) and (max-width: 1000px) {
-    .columnGenero, .columnEdad {
-        display: none;
+@media (max-width: 600px) {
+
+    /* Mobile */
+    .header {
+        flex-direction: column-reverse;
+        margin-bottom: 0.5rem;
+    }
+
+    .headerActions button {
+        height: 3rem;
+        margin-bottom: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 }
 
-@media (min-width: 700px) and (max-width: 800px) {
-    .columnEmail,
-    .columnGenero, .columnEdad {
-        display: none;
-    }
-} */
-
-@media (max-width: 400px) {
+@media (max-width: 880px) {
 
     /* Mobile */
     .agregar {
@@ -466,5 +506,4 @@
     .plus {
         font-size: 2rem;
     }
-
 }

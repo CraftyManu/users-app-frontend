@@ -1,6 +1,7 @@
 /* import { useMemo } from "react"; */
 /* import { Users, Shield, Venus, Cake, } from "lucide-react";
 import DashboardCard from "./DashboardCard"; */
+import Button from '@/components/ui/Button/Button'
 import styles from "./Dashboard.module.css";
 import { useDashboardStats } from "./useDashboardStats";
 import type { DashboardProps } from "./types";
@@ -9,13 +10,19 @@ import AgeChart from "./charts/AgeChart";
 import RoleChart from "./charts/RoleChart";
 import GenderChart from "./charts/GenderChart";
 import TotalUsers from "./charts/TotalUsers"
+import { X } from 'lucide-react'
 
-function Dashboard({ users }: DashboardProps) {
+function Dashboard({ users, onClose }: DashboardProps) {
 
     const stats = useDashboardStats(users);
 
     return (
         <section className={styles.dashboard}>
+            <div className={styles.dashboardHeader}>
+                <Button variant="smallIcon" onClick={onClose}>
+                    {/* Cerrar dashboard  */}<X />
+                </Button>
+            </div>
 
             <div className={styles.charts}>
 

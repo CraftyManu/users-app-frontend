@@ -10,11 +10,13 @@ import UserDetails from '@/components/ui/UserDetails/UserDetails'
 import UserEditForm from '@/components/ui/UserEditForm/UserEditForm'
 import { useUsers } from '@/hooks/useUsers'
 import { useUserModal } from '@/hooks/useUserModal'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Dashboard from '@/components/blocks/Dashboard/Dashboard'
+import { SquareArrowOutUpRight } from 'lucide-react'
 
 function Home() {
     const navigate = useNavigate()
+    const [dashboardOpen, setDashboardOpen] = useState(true)
 
     const {
         users,
@@ -36,6 +38,9 @@ function Home() {
 
     // Get user role from localStorage
     const userRole = localStorage.getItem('role') || 'GUEST'
+    //Get user email from localStorage
+    const userEmail = localStorage.getItem('email')
+
 
     useEffect(() => {
         // Protección mínima de ruta: sin token no tiene sentido estar acá
@@ -116,13 +121,47 @@ function Home() {
 
             <div className={styles.header}>
                 <h1 className={styles.title}>Usuarios</h1>
+                <div className={styles.thisUser}>
+
+                    <div className={styles.thisUserEmail}>
+                        Tu email: &ensp; {/* <span className={styles.spanEmail}>{userEmail} </span> */}
+                        <div className={styles.spanEmail}>
+                            {userEmail}
+                        </div>
+                    </div>
+                    <div className={styles.thisUserRol}>
+                        Tu rol: &ensp;
+                        <div className={`${styles.badge} ${styles[`badge__${userRole.toLowerCase()}`] ?? ''}`}>
+                            {userRole}
+                        </div>
+                    </div>
+
+                </div>
                 <div className={styles.headerActions}>
                     <Button variant="terciary" onClick={() => navigate({ to: '/create-user' })}><span className={styles.plus}>+</span> <span className={styles.agregar}>Agregar</span></Button>
                     <Button variant="secondary" onClick={handleLogout}>Cerrar sesión</Button>
                 </div>
             </div>
 
-            <Dashboard users={sortedUsers} />
+            <div className={styles.dashboardArea}>
+                {dashboardOpen ? (
+                    <Dashboard
+                        users={sortedUsers}
+                        onClose={() => setDashboardOpen(false)}
+                    />
+                ) : (
+                    <div className={styles.dashboardPlaceholder}>
+                        <div className={styles.dashboardHeader}>
+                            <Button
+                                variant="smallIcon"
+                                onClick={() => setDashboardOpen(true)}
+                            >
+                                {/* Mostrar dashboard */} <SquareArrowOutUpRight />
+                            </Button>
+                        </div>
+                    </div>
+                )}
+            </div>
 
             {/* Estados de la petición: cargando → error → vacío → tabla */}
             {loading && <p className={styles.message}>Cargando usuarios...</p>}
@@ -141,6 +180,8 @@ function Home() {
                     onView={openView}
                     onEdit={openEdit}
                     onDelete={handleDeleteUser}
+                    canDelete={canDeleteUser}
+                    showDeleteButton={userRole.toUpperCase() !== 'GUEST' && userRole.toUpperCase() !== 'USER'}
                 />
             )}
 
@@ -151,6 +192,8 @@ function Home() {
                     onView={openView}
                     onEdit={openEdit}
                     onDelete={handleDeleteUser}
+                    canDelete={canDeleteUser}
+                    showDeleteButton={userRole.toUpperCase() !== 'GUEST' && userRole.toUpperCase() !== 'USER'}
                 />
 
             )}

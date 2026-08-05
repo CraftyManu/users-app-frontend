@@ -52,6 +52,7 @@ export interface DashboardStats {
 
 export interface DashboardProps {
     users: DashboardUser[];
+    onClose?: () => void;
 }
 
 export interface DashboardCardProps {
