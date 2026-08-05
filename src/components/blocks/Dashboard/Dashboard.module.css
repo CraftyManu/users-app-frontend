@@ -1,0 +1,39 @@
+.dashboard {
+    position: relative;
+    z-index: 2;
+
+    display: grid;
+    gap: 24px;
+    margin: 2rem 0;
+}
+
+.cards {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.charts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    border: 1px solid var(--color-border-70);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-background-md);
+}
+
+.charts> :last-child {
+    grid-column: 1 / -1;
+}
+
+@media (max-width: 900px) {
+
+    .charts {
+        grid-template-columns: 1fr;
+    }
+
+    .charts> :last-child {
+        grid-column: auto;
+    }
+
+}

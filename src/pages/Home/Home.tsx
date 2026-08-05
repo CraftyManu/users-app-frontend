@@ -11,6 +11,7 @@ import UserEditForm from '@/components/ui/UserEditForm/UserEditForm'
 import { useUsers } from '@/hooks/useUsers'
 import { useUserModal } from '@/hooks/useUserModal'
 import { useEffect } from 'react'
+import Dashboard from '@/components/blocks/Dashboard/Dashboard'
 
 function Home() {
     const navigate = useNavigate()
@@ -99,10 +100,6 @@ function Home() {
         return false
     }
 
-
-
-
-
     return (
         <main className={styles.container}>
 
@@ -124,6 +121,9 @@ function Home() {
                     <Button variant="secondary" onClick={handleLogout}>Cerrar sesión</Button>
                 </div>
             </div>
+
+            <Dashboard users={sortedUsers} />
+
 
             {/* Estados de la petición: cargando → error → vacío → tabla */}
             {loading && <p className={styles.message}>Cargando usuarios...</p>}
