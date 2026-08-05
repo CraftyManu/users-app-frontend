@@ -360,22 +360,28 @@
     display: block;
 }
 
-@media (min-width: 900px) and (max-width: 1000px) {
-
-    /* Tablet */
-    .columnGenero {
+@media (min-width: 1050px) and (max-width: 1100px) {
+    .columnLocalidad {
         display: none;
     }
+}
 
-    .userInfo {
-        flex-direction: column;
-/*         justify-content: center; */
+@media (min-width: 1000px) and (max-width: 1050px) {
+    .columnEdad,
+    .columnLocalidad {
+        display: none;
+    }
+}
+
+@media (min-width: 900px) and (max-width: 1000px) {
+    .columnEdad,
+    .columnEmail,
+    .columnLocalidad {
+        display: none;
     }
 }
 
 @media (max-width: 900px) {
-
-    /* Mobile */
     .desktopTable {
         display: none;
         height: 0;

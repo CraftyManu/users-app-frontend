@@ -22,7 +22,7 @@ function AgeChart({ data }: AgeChartProps) {
                 data={data}
                 margin={{
                     top: 0,
-                    left: -15,
+                    left: -25,
                     right: 15,
                     bottom: 0,
                 }}

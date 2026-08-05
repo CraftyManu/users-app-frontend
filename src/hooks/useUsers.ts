@@ -6,6 +6,7 @@ import type { User } from '@/api/types'
 export type SortKey =
     | 'nombre'
     | 'email'
+    | 'edad'
     | 'genero'
     | 'localidad'
     | 'role'

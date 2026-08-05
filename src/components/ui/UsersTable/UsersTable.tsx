@@ -7,10 +7,10 @@ import { Eye, Pencil, Trash2 } from 'lucide-react'
 export type SortKey =
     | 'nombre'
     | 'email'
+    | 'edad'
     | 'genero'
     | 'localidad'
     | 'role'
-
 export type SortDirection = 'asc' | 'desc'
 
 interface UsersTableProps {
@@ -59,23 +59,22 @@ function UsersTable({
                             {renderSortButton('nombre')}
                         </th>
 
-                        <th
-                            className={`${styles.th} ${styles.columnEmail}`}
-                        >
+                        <th className={`${styles.th} ${styles.columnEmail}`}                        >
                             Email
                             {renderSortButton('email')}
                         </th>
 
-                        <th
-                            className={`${styles.th} ${styles.columnGenero}`}
-                        >
+                        <th className={`${styles.th} ${styles.columnEdad}`}                        >
+                            Edad
+                            {renderSortButton('edad')}
+                        </th>
+
+                        <th className={`${styles.th} ${styles.columnGenero}`}                        >
                             Género
                             {renderSortButton('genero')}
                         </th>
 
-                        <th
-                            className={`${styles.th} ${styles.columnLocalidad}`}
-                        >
+                        <th className={`${styles.th} ${styles.columnLocalidad}`}                        >
                             Localidad
                             {renderSortButton('localidad')}
                         </th>
@@ -93,10 +92,7 @@ function UsersTable({
 
                 <tbody>
                     {users.map((user) => (
-                        <tr
-                            key={user._id}
-                            className={styles.tr}
-                        >
+                        <tr key={user._id} className={styles.tr}>
                             <td className={styles.td}>
                                 <div className={styles.userCell}>
                                     <Avatar user={user} />
@@ -107,15 +103,15 @@ function UsersTable({
                                 </div>
                             </td>
 
-                            <td
-                                className={`${styles.td} ${styles.columnEmail}`}
-                            >
+                            <td className={`${styles.td} ${styles.columnEmail}`}>
                                 {user.email}
                             </td>
 
-                            <td
-                                className={`${styles.td} ${styles.genderCell} ${styles.columnGenero}`}
-                            >
+                            <td className={`${styles.td} ${styles.columnEdad}`}>
+                                {user.edad}
+                            </td>
+
+                            <td className={`${styles.td} ${styles.genderCell} ${styles.columnGenero}`}>
                                 <GenderIcon
                                     gender={
                                         user.genero as
@@ -125,19 +121,12 @@ function UsersTable({
                                 />
                             </td>
 
-                            <td
-                                className={`${styles.td} ${styles.columnLocalidad}`}
-                            >
+                            <td className={`${styles.td} ${styles.columnLocalidad}`}>
                                 {user.localidad}
                             </td>
 
                             <td className={styles.td}>
-                                <span
-                                    className={`${styles.badge} ${styles[
-                                        `badge__${user.role.toLowerCase()}`
-                                        ] ?? ''
-                                        }`}
-                                >
+                                <span className={`${styles.badge} ${styles[`badge__${user.role.toLowerCase()}`] ?? ''}`}>
                                     {user.role}
                                 </span>
                             </td>

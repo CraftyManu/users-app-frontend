@@ -443,14 +443,18 @@
     }
 }
 
-@media (min-width: 700px) and (max-width: 1000px) {
-
-    /* Tablet */
-    .columnEmail,
-    .columnGenero {
+/* @media (min-width: 800px) and (max-width: 1000px) {
+    .columnGenero, .columnEdad {
         display: none;
     }
 }
+
+@media (min-width: 700px) and (max-width: 800px) {
+    .columnEmail,
+    .columnGenero, .columnEdad {
+        display: none;
+    }
+} */
 
 @media (max-width: 400px) {
 
