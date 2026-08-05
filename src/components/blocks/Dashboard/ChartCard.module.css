@@ -8,11 +8,20 @@
     /*     min-height:360px; */
     height: 360px;
     max-height: fit-content;
-    width: 250px;
-    max-width: 300px;
-    min-width: 250px;
+    min-width: 0;
     margin: 1rem;
 }
+
+.small {
+    max-width: 500px;
+}
+
+@media (min-width: 600px) {
+    .big {
+        max-width: 45vw;
+    }
+}
+
 
 .header {
     margin-bottom: 20px;

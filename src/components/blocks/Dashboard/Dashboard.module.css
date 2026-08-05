@@ -7,12 +7,6 @@
     margin: 2rem 0;
 }
 
-.cards {
-    display: grid;
-    gap: 24px;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
-
 .charts {
     display: flex;
     flex-wrap: wrap;
@@ -20,20 +14,26 @@
     border: 1px solid var(--color-border-70);
     border-radius: var(--radius-lg);
     background-color: var(--color-background-md);
+
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(4, 1fr);
 }
 
-.charts> :last-child {
+/* .charts> :last-child {
     grid-column: 1 / -1;
+} */
+
+/* Medium screens: 2 columns */
+@media (max-width: 1200px) {
+    .charts {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-@media (max-width: 900px) {
-
+/* Small screens: 1 column */
+@media (max-width: 600px) {
     .charts {
         grid-template-columns: 1fr;
     }
-
-    .charts> :last-child {
-        grid-column: auto;
-    }
-
 }
