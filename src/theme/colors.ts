@@ -1,56 +1,50 @@
 export const colors = {
+  primary: "#646cff",
+  primaryHover: "#535bf2",
 
-    primary: "#646cff",
-    primaryHover: "#535bf2",
+  secondary: "#8b7cf6",
 
-    secondary: "#8b7cf6",
+  accent: "#46beff",
 
-    accent: "#46beff",
+  success: "#4ade80",
 
-    success: "#4ade80",
+  warning: "#f59e0b",
 
-    warning: "#f59e0b",
+  danger: "#ef4444",
 
-    danger: "#ef4444",
+  white: "#ffffff",
 
-    white: "#ffffff",
+  black: "#000000",
 
-    black: "#000000",
+  text: "#ffffff",
 
-    text: "#ffffff",
+  textMuted: "#9ca3af",
 
-    textMuted: "#9ca3af",
+  border: "rgba(255,255,255,.08)",
 
-    border: "rgba(255,255,255,.08)",
+  card: "rgba(255,255,255,.08)",
 
-    card: "rgba(255,255,255,.08)",
+  cardHover: "rgba(255,255,255,.12)",
 
-    cardHover: "rgba(255,255,255,.12)",
+  glass: "rgba(255,255,255,.08)",
 
-    glass: "rgba(255,255,255,.08)",
+  neutral: "#94a3b8",
 
-    neutral: "#94a3b8",
+  role: {
+    ROOT: "#ff5ade",
 
-    role: {
+    ADMIN: "#7b5aff",
 
-        ROOT: "#ff5ade",
+    USER: "#46beff",
 
-        ADMIN: "#7b5aff",
+    GUEST: "#5168c7",
+  },
 
-        USER: "#46beff",
+  gender: {
+    Female: "#ff70c2",
 
-        GUEST: "#5168c7",
+    Male: "#646cff",
 
-    },
-
-    gender: {
-
-        Female: "#ff70c2",
-
-        Male: "#646cff",
-
-        Other: "#94a3b8",
-
-    }
-
+    Other: "#94a3b8",
+  },
 };

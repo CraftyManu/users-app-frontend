@@ -1,77 +1,57 @@
-import { Users, Cake, UserRound, Baby, } from "lucide-react";
+import { Users, Cake, UserRound, Baby } from "lucide-react";
 
 import type { DashboardStats } from "../types";
 
 import styles from "./TotalUsers.module.css";
 
 interface TotalUsersProps {
-    stats: Pick<
-        DashboardStats,
-        "totalUsers" |
-        "averageAge" |
-        "oldest" |
-        "youngest"
-    >;
+  stats: Pick<DashboardStats, "totalUsers" | "averageAge" | "oldest" | "youngest">;
 }
 
 function TotalUsers({ stats }: TotalUsersProps) {
+  const items = [
+    {
+      icon: Users,
+      label: "Total de usuarios",
+      value: stats.totalUsers,
+    },
 
-    const items = [
+    {
+      icon: Cake,
+      label: "Edad media",
+      value: stats.averageAge,
+    },
 
-        {
-            icon: Users,
-            label: "Total de usuarios",
-            value: stats.totalUsers,
-        },
+    {
+      icon: UserRound,
+      label: "Usuario mayor",
+      value: stats.oldest,
+    },
 
-        {
-            icon: Cake,
-            label: "Edad media",
-            value: stats.averageAge,
-        },
+    {
+      icon: Baby,
+      label: "Usuario menor",
+      value: stats.youngest,
+    },
+  ];
 
-        {
-            icon: UserRound,
-            label: "Usuario mayor",
-            value: stats.oldest,
-        },
+  return (
+    <div className={styles.container}>
+      {items.map((item) => {
+        const Icon = item.icon;
 
-        {
-            icon: Baby,
-            label: "Usuario menor",
-            value: stats.youngest,
-        },
-
-    ];
-
-    return (
-
-        <div className={styles.container}>
-            {items.map(item => {
-                const Icon = item.icon;
-
-                return (
-                    <div
-                        key={item.label}
-                        className={styles.item}
-                    >
-                        <div className={styles.left}>
-                            <Icon
-                                size={20}
-                                className={styles.icon}
-                            />
-                            <span>
-                                {item.label}
-                            </span>
-                        </div>
-                        <span className={styles.value}>
-                            {item.value}
-                        </span>
-                    </div>
-                );
-            })}
-        </div>
-    );
+        return (
+          <div key={item.label} className={styles.item}>
+            <div className={styles.left}>
+              <Icon size={20} className={styles.icon} />
+              <span>{item.label}</span>
+            </div>
+            <span className={styles.value}>{item.value}</span>
+          </div>
+        );
+      })}
+    </div>
+  );
 }
 
 export default TotalUsers;

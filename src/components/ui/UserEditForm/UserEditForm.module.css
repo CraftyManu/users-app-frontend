@@ -1,89 +1,84 @@
-
 /* ============================================================
                                   MODAL — EDITAR (formulario)
   ============================================================ */
 .editForm {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .formRow {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0 16px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0 16px;
 }
 
 .label {
-    font-size: 13px;
-    font-weight: 500;
-    color: #ccc;
-    margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #ccc;
+  margin-bottom: 6px;
 }
 
 .input,
 .select {
-    width: 100%;
-    padding: 12px 16px;
-    margin-bottom: 16px;
-    background-color: #1a1a1a;
-    border: 1px solid #333;
-    border-radius: 8px;
-    color: #fff;
-    font-size: 14px;
-    box-sizing: border-box;
-    outline: none;
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  box-sizing: border-box;
+  outline: none;
 
-    background:
-        rgba(255, 255, 255, .03);
-    background: linear-gradient(180deg, #17223a, #1f263a);
-    border:
-        1px solid rgba(255, 255, 255, .08);
-    transition: .25s;
-    border-radius: 10px;
-
+  background: rgba(255, 255, 255, 0.03);
+  background: linear-gradient(180deg, #17223a, #1f263a);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: 0.25s;
+  border-radius: 10px;
 }
 
 .input:focus,
 .select:focus {
-    border-color: #666;
-    border-color: var(--color-accent);
-    box-shadow:
-        0 0 0 4px rgba(123, 124, 255, .15);
+  border-color: #666;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 4px rgba(123, 124, 255, 0.15);
 }
 
 input[type="date"] {
-    color-scheme: dark;
+  color-scheme: dark;
 }
 
 option {
-    color: var(--color-text);
-    background-color: var(--color-background);
+  color: var(--color-text);
+  background-color: var(--color-background);
 }
 
 option:checked {
-    background: #1f263a;
-    color: white;
+  background: #1f263a;
+  color: white;
 }
 
 option:disabled {
-    color: #888;
-    background: #2a2a2a;
+  color: #888;
+  background: #2a2a2a;
 }
 
 .modalActions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 12px;
-    margin-top: 8px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
 }
 
 .modalActions button {
-    width: auto;
-    padding: 10px 20px;
-    margin-top: 0;
+  width: auto;
+  padding: 10px 20px;
+  margin-top: 0;
 }
 
 .error {
-    color: var(--color-error);
-    font-size: 15px;
+  color: var(--color-error);
+  font-size: 15px;
 }

@@ -1,22 +1,21 @@
 .footer {
-    margin-top: 20px;
-    font-size: 14px;
-    color: var(--color-background);
-    text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--color-background);
+  text-align: center;
 }
 
 .footer a {
-    color: var(--color-text-light);
-    text-decoration: none;
+  color: var(--color-text-light);
+  text-decoration: none;
 }
 
 .footer a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-
 @media (max-height: 700px) {
-    .footer {
-        margin-top: 10px;
-    }
+  .footer {
+    margin-top: 10px;
+  }
 }

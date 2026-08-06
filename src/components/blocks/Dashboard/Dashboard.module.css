@@ -1,23 +1,23 @@
 .dashboard {
-    position: relative;
-    z-index: 2;
+  position: relative;
+  z-index: 2;
 
-    display: grid;
-    gap: 0.5rem;
-    margin: 0.1rem 0;
+  display: grid;
+  gap: 0.5rem;
+  margin: 0.1rem 0;
 }
 
 .charts {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    border: 1px solid var(--color-border-70);
-    border-radius: var(--radius-lg);
-    background-color: var(--color-background-md);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  border: 1px solid var(--color-border-70);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-background-md);
 
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(4, 1fr);
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
 }
 
 /* .charts> :last-child {
@@ -25,25 +25,25 @@
 } */
 
 .dashboardHeader {
-    display: flex;
-    justify-content: right;
-    align-items: right;
+  display: flex;
+  justify-content: right;
+  align-items: right;
 }
 
 /* Medium screens: 2 columns */
 @media (max-width: 1200px) {
-    .charts {
-        grid-template-columns: repeat(2, 1fr);
-    }
+  .charts {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* Small screens: 1 column */
 @media (max-width: 600px) {
-    .charts {
-        grid-template-columns: 1fr;
-    }
+  .charts {
+    grid-template-columns: 1fr;
+  }
 
-    .dashboard {
-        margin-top: 0.5rem;
-    }
+  .dashboard {
+    margin-top: 0.5rem;
+  }
 }

@@ -1,19 +1,13 @@
 export const animations = {
+  cardHover: {
+    y: -6,
 
-    cardHover: {
+    scale: 1.02,
+  },
 
-        y: -6,
+  cardTap: {
+    scale: 0.98,
+  },
 
-        scale: 1.02,
-
-    },
-
-    cardTap: {
-
-        scale: .98,
-
-    },
-
-    duration: .2,
-
+  duration: 0.2,
 };

@@ -8,13 +8,13 @@ Esta aplicación frontend está diseñada para administrar usuarios desde una in
 
 ## Tecnologías principales
 
-| Tecnología | Uso |
-|---|---|
-| [React 19](https://react.dev/) | Librería de interfaz de usuario |
-| [Vite](https://vitejs.dev/) | Construcción y servidor de desarrollo |
-| [TanStack Router](https://tanstack.com/router) | Enrutamiento con tipado completo |
-| CSS Modules | Estilos encapsulados por componente |
-| TypeScript | Tipado estático |
+| Tecnología                                     | Uso                                   |
+| ---------------------------------------------- | ------------------------------------- |
+| [React 19](https://react.dev/)                 | Librería de interfaz de usuario       |
+| [Vite](https://vitejs.dev/)                    | Construcción y servidor de desarrollo |
+| [TanStack Router](https://tanstack.com/router) | Enrutamiento con tipado completo      |
+| CSS Modules                                    | Estilos encapsulados por componente   |
+| TypeScript                                     | Tipado estático                       |
 
 ---
 
@@ -36,11 +36,11 @@ La aplicación estará disponible en `http://localhost:5173`.
 
 ### Scripts disponibles
 
-| Comando | Descripción |
-|---|---|
-| `npm run dev` | Inicia el servidor de desarrollo |
-| `npm run build` | Compila la aplicación para producción |
-| `npm run preview` | Previsualiza el build de producción |
+| Comando           | Descripción                           |
+| ----------------- | ------------------------------------- |
+| `npm run dev`     | Inicia el servidor de desarrollo      |
+| `npm run build`   | Compila la aplicación para producción |
+| `npm run preview` | Previsualiza el build de producción   |
 
 ---
 
@@ -210,11 +210,11 @@ src/
 
 ## Rutas principales
 
-| Ruta | Página |
-|---|---|
-| `/` | Página principal |
-| `/login` | Login |
-| `/create-user` | Crear usuario |
+| Ruta           | Página           |
+| -------------- | ---------------- |
+| `/`            | Página principal |
+| `/login`       | Login            |
+| `/create-user` | Crear usuario    |
 
 Las rutas se definen en `src/router.tsx` usando TanStack Router.
 

@@ -1,17 +1,11 @@
-import styles from './Title.module.css'
+import styles from "./Title.module.css";
 
 interface TitleProps {
-    children: React.ReactNode
+  children: React.ReactNode;
 }
 
-function Title({
-    children,
-}: TitleProps) {
-    return (
-        <h1 className={styles.title}        >
-            {children}
-        </h1>
-    )
+function Title({ children }: TitleProps) {
+  return <h1 className={styles.title}>{children}</h1>;
 }
 
-export default Title
+export default Title;
