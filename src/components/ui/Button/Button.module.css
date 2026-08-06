@@ -44,7 +44,8 @@
 
 .terciary {
   color: black;
-  background: radial-gradient(#f0e7f35a 15%, #8a7cf69e 40%, #2f2a4573 80%), linear-gradient(180deg, var(--color-primary), var(--color-primary-hover));
+/*   background: radial-gradient(#f0e7f35a 15%, #8a7cf69e 40%, #2f2a4573 80%), linear-gradient(180deg, var(--color-primary), var(--color-primary-hover));
+ */background-color: var(--color-primary);
 
   box-shadow:
     0 12px 30px rgba(139, 124, 246, 0.35),
