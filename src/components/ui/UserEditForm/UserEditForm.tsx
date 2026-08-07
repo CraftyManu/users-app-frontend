@@ -4,9 +4,11 @@ import { updateUser } from "@/api/updateUser";
 import type { User } from "@/api/types";
 import styles from "./UserEditForm.module.css";
 import { Trash2 } from "lucide-react";
+import { provinciasArgentinas } from './provincias'
 
 const ROLES = ["ROOT", "ADMIN", "USER", "GUEST"];
 const GENEROS = ["Femenino", "Masculino", "Otro"];
+const PROVINCIAS = provinciasArgentinas;
 
 interface UserEditFormProps {
   user: User;
@@ -39,6 +41,8 @@ function UserEditForm({ user, onCancel, onSaved, onDelete, canDelete }: UserEdit
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -135,9 +139,14 @@ function UserEditForm({ user, onCancel, onSaved, onDelete, canDelete }: UserEdit
 
           <div>
             <label className={styles.label}>Provincia</label>
+            <select className={styles.select} value={provincia} onChange={(e) => setProvincia(e.target.value)}>
+              {PROVINCIAS.map((g) => (
+                <option key={g}>{g}</option>
+              ))}
+            </select>
 
-            <input className={styles.input} value={provincia} onChange={(e) => setProvincia(e.target.value)} />
-          </div>
+            {/*             <input className={styles.input} value={provincia} onChange={(e) => setProvincia(e.target.value)} />
+ */}          </div>
         </div>
 
         <div className={styles.formRow}>
