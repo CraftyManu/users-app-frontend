@@ -4,7 +4,7 @@ import styles from "./DashboardCard.module.css";
 import type { DashboardCardProps } from "./types";
 import { animations } from "@/theme";
 
-function DashboardCard({ title, value, subtitle, icon, onClick }: DashboardCardProps) {
+function DashboardCard({ title, value, subtitle, icon }: DashboardCardProps) {
   const numeric = typeof value === "number";
 
   return (

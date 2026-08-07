@@ -13,10 +13,13 @@ import { useUserModal } from "@/hooks/useUserModal";
 import { useEffect, useState } from "react";
 import Dashboard from "@/components/blocks/Dashboard/Dashboard";
 import { SquareArrowOutUpRight } from "lucide-react";
+import HistoryCard from "@/components/ui/HistorialCard/HistorialCard";
+import { loadSessionHistoryFromBackend, subscribeToRequestHistory, type HistoryEntry } from "@/utils/requestHistory";
 
 function Home() {
   const navigate = useNavigate();
   const [dashboardOpen, setDashboardOpen] = useState(true);
+  const [history, setHistory] = useState<HistoryEntry[]>([]);
 
   const {
     users,
@@ -45,6 +48,32 @@ function Home() {
       navigate({ to: "/login" });
     }
   }, [navigate]);
+
+  useEffect(() => {
+    const unsubscribe = subscribeToRequestHistory((entries) => {
+      setHistory(entries);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadRemoteHistory = async () => {
+      const entries = await loadSessionHistoryFromBackend();
+
+      if (!cancelled) {
+        setHistory(entries);
+      }
+    };
+
+    void loadRemoteHistory();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   function handleLogout() {
     // Cerrar sesión = borrar el token y volver al login
@@ -175,6 +204,9 @@ function Home() {
         {modalMode === "view" && modalUser && <UserDetails user={modalUser} />}
         {modalMode === "edit" && modalUser && <UserEditForm user={modalUser} onCancel={closeModal} onSaved={handleUserUpdated} onDelete={handleDeleteUser} canDelete={canDeleteUser(modalUser)} />}
       </Modal>
+
+      <HistoryCard history={history} setHistory={setHistory} />
+
     </main>
   );
 }
