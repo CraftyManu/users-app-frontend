@@ -77,23 +77,27 @@ function parseBackendLog(log: SessionLogEntry): HistoryEntry | null {
     const statusMatch = message.match(/\b(2\d\d|3\d\d|4\d\d|5\d\d)\b/);
     const timeMatch = message.match(/\((\d+)ms\)|\[(\d+)ms\]|\b(\d+)ms\b/i);
 
-    if (!methodMatch || !targetMatch || !statusMatch) {
-        return null;
+    // If it's a standard HTTP-style log, parse it into a normal history entry
+    if (methodMatch && targetMatch && statusMatch) {
+        const method = methodMatch[1].toUpperCase();
+        const target = targetMatch[2] ?? "/";
+        const statusValue = Number(statusMatch[1] ?? 0);
+        const timeValue = Number(timeMatch?.[1] ?? timeMatch?.[2] ?? timeMatch?.[3] ?? 0);
+
+        return createEntry(
+            method,
+            target,
+            statusValue,
+            timeValue,
+            statusValue < 400,
+            `Nivel ${log.level}`
+        );
     }
 
-    const method = methodMatch[1].toUpperCase();
-    const target = targetMatch[2] ?? "/";
-    const statusValue = Number(statusMatch[1] ?? 0);
-    const timeValue = Number(timeMatch?.[1] ?? timeMatch?.[2] ?? timeMatch?.[3] ?? 0);
-
-    return createEntry(
-        method,
-        target,
-        statusValue,
-        timeValue,
-        statusValue < 400,
-        `Nivel ${log.level}`
-    );
+    // Fallback: create a LOG entry to preserve and display the raw message from backend
+    const details = `${log.level ?? "INFO"}: ${message}`;
+    // Use method 'LOG' so UI can render it specially, status 0 and ok true (non-HTTP)
+    return createEntry('LOG', '/', 0, 0, true, details);
 }
 
 export async function loadSessionHistoryFromBackend(sessionId?: string): Promise<HistoryEntry[]> {
