@@ -83,8 +83,6 @@ users-app-frontend/
 ```
 src/
 ├── api/
-│   ├── api.ts
-│   ├── authStorage.ts
 │   ├── createUser.ts
 │   ├── deleteUser.ts
 │   ├── getUsers.ts
