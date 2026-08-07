@@ -1,8 +1,18 @@
-# Aplicación de Gestión de Usuarios
+# Aplicación de Gestión de Usuarios (FRONTEND)
 
 Versión actual: `0.0.1`
 
 Esta aplicación frontend está diseñada para administrar usuarios desde una interfaz moderna con React, TypeScript y Vite. Incluye rutas de login, listado de usuarios, creación y edición de perfiles.
+
+---
+
+## Características principales
+
+- Interfaz moderna y responsiva para la gestión de usuarios.
+- Inicio de sesión con flujo de autenticación básico.
+- Vista de usuarios con opciones para crear, editar y eliminar perfiles.
+- Panel de estadísticas y visualización de datos relacionados con los usuarios.
+- Arquitectura modular basada en componentes reutilizables y estilos encapsulados.
 
 ---
 
