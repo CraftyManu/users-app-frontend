@@ -64,19 +64,6 @@ function CreateForm() {
       </label>
       <input className={styles.input} id="email" type="email" placeholder="usuario@email.com" value={email} onChange={(e) => setEmail(e.target.value)} required />
 
-      {/*             <label className={styles.label} htmlFor="password">
-                Contraseña
-            </label>
-            <input
-                className={styles.input}
-                id="password"
-                type="password"
-                placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                minLength={6}
-            /> */}
       <div className={styles.passwordField}>
         <label className={styles.label} htmlFor="password">
           Contraseña

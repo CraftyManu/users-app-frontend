@@ -1,7 +1,6 @@
 .container {
   min-height: 100vh;
   padding: 42px;
-
   background:
     radial-gradient(circle at top left, rgba(123, 124, 255, 0.1), transparent 35%), radial-gradient(circle at bottom right, rgba(65, 180, 255, 0.07), transparent 40%),
     linear-gradient(180deg, #08090d, #0b0d14 45%, #090b12);
@@ -121,12 +120,6 @@
   min-width: 700px;
   /* aparece scrollbar horizontal si es menor a min-width */
 }
-
-/* .table thead {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-} */
 
 .th {
   position: sticky;
@@ -367,7 +360,6 @@
 
 .actionBtnEdit:hover {
   border-color: rgb(154, 93, 229);
-  /*     color: #c49dfa; */
 }
 
 .actionBtn::before {

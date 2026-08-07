@@ -11,17 +11,11 @@
   flex: 0 0 clamp(380px, 35vw, 520px);
   /* never smaller than 380px, ideally 35% of the viewport, never larger than 520px.*/
   min-width: 50vw;
-  /* display: flex; */
-  /* align-items: center;
-    justify-content: center; */
   background-color: #0a0a0a;
   padding: 40px;
-
   overflow: hidden;
-
   overflow-y: auto;
   padding: 40px;
-
   display: grid;
   place-items: center;
 }

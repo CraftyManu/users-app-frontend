@@ -57,9 +57,3 @@ textarea {
 ::-webkit-scrollbar-corner {
   background: #09090b;
 }
-
-/* Firefox */
-/* html {
-    scrollbar-width: thin;
-    scrollbar-color: #7d88ff #09090b;
-} */

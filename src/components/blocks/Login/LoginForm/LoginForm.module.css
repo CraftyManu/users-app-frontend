@@ -5,11 +5,9 @@
   flex-direction: column;
   padding: 48px;
   margin: 0 auto;
-
   border-radius: 20px;
   background: #ffffff05;
   border: 1px solid #ffffff0d;
-
   animation: fadeUp 0.7s ease;
   overflow-y: auto;
 }
@@ -50,7 +48,6 @@
 }
 
 .input:focus {
-  /*     border-color: #666; */
   border-color: var(--color-primary-hover);
 }
 
