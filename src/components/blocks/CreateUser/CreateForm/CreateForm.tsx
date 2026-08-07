@@ -9,9 +9,11 @@ import { useNavigate } from "@tanstack/react-router";
 import { createUser } from "@/api/createUser";
 import { getAuthToken } from "@/api/authStorage";
 import { Eye, EyeOff } from "lucide-react";
+import { useUsers } from "@/hooks/useUsers";
 
 function CreateForm() {
   const navigate = useNavigate();
+  const { loadUsers } = useUsers();
 
   // Inputs controlados: React es la fuente de verdad del valor
   const [nombre, setNombre] = useState("");
@@ -35,6 +37,7 @@ function CreateForm() {
     setLoading(true);
     try {
       await createUser(nombre, apellido, email, password);
+      await loadUsers();
       // Usuario creado → volvemos a la lista para verlo
       navigate({ to: "/" });
     } catch (error: any) {

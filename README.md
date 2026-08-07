@@ -1,4 +1,4 @@
-# Aplicación de Gestión de Usuarios (FRONTEND)
+# Aplicación de Gestión de Usuarios (Frontend)
 
 Versión actual: `0.0.1`
 
@@ -72,7 +72,6 @@ users-app-frontend/
     ├── config/
     ├── hooks/
     ├── pages/
-    ├── store/
     ├── styles/
     ├── theme/
     ├── types/
@@ -184,7 +183,6 @@ src/
 │   └── Login/
 │       ├── Login.module.css
 │       └── Login.tsx
-├── store/
 ├── styles/
 │   ├── fonts.css
 │   ├── fontStyles.module.css

@@ -74,9 +74,13 @@ export function useUsers() {
   }
 
   async function deleteUserById(id: string) {
-    await deleteUser(id);
+    try {
+      await deleteUser(id);
 
-    setUsers((prev) => prev.filter((user) => user._id !== id));
+      setUsers((prev) => prev.filter((user) => user._id !== id));
+    } catch (error: any) {
+      throw error;
+    }
   }
 
   return {

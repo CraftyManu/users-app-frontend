@@ -70,7 +70,21 @@ function UserEditForm({ user, onCancel, onSaved, onDelete, canDelete }: UserEdit
         payload.role = role;
       }
 
-      const updated = await updateUser(user._id, payload);
+      const updated = await updateUser(user._id, payload, {
+        nombre: user.nombre,
+        apellido: user.apellido,
+        genero: user.genero,
+        fechaNacimiento: user.fechaNacimiento,
+        telefono: user.telefono,
+        direccion: user.direccion,
+        localidad: user.localidad,
+        provincia: user.provincia,
+        pais: user.pais,
+        codigoPostal: user.codigoPostal,
+        role: user.role,
+        userName: user.userName,
+        avatarURL: user.avatarURL,
+      });
 
       onSaved(updated);
       onCancel();

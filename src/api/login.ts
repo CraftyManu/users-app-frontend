@@ -20,6 +20,13 @@ export async function login(email: string, password: string) {
     throw new Error(body.message); // Ej: "Passsword incorrecto"
   }
 
+  const data = body.data;
+  const sessionId = data?.sessionId ?? body.sessionId ?? body.data?.sessionId;
+
+  if (sessionId) {
+    localStorage.setItem("sessionId", sessionId);
+  }
+
   // 4. Devolvemos solo la data: { token, role }
-  return body.data;
+  return data;
 }
